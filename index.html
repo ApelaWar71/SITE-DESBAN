@@ -3,8 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gerador de Texto e Assunto</title>
+    <title>Desban Solutions - Sua Ajuda WhatsApp</title>
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1200px-WhatsApp.svg.png" type="image/x-icon">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
+      /* Estilos Globais */
       * {
         margin: 0;
         padding: 0;
@@ -12,340 +22,1435 @@
       }
 
       body {
-        font-family: "Arial", sans-serif;
-        background-color: #111;
-        color: #fff;
+        font-family: "Montserrat", sans-serif;
+        background-color: #0d1117; /* Fundo principal escuro (GitHub Dark) */
+        color: #e6edf3; /* Texto claro (GitHub Light Gray) */
         padding: 20px;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
         min-height: 100vh;
-        flex-direction: column;
       }
 
-      .card {
-        background-color: #333;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        padding: 30px;
-        width: 100%;
-        max-width: 400px;
+      /* Hero Section */
+      .hero-section {
         text-align: center;
-        border: 2px solid #ffb400;
-        transition: transform 0.3s ease;
+        margin-bottom: 50px;
+        padding: 40px 20px;
+        background-color: #161b22;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        max-width: 900px;
+        width: 100%;
+        border: 2px solid #58a6ff;
+        opacity: 0; /* Começa oculto para animação */
+        transform: translateY(20px);
+        animation: fadeInSlideUp 1s forwards;
       }
 
-      .card:hover {
-        transform: translateY(-5px);
+      @keyframes fadeInSlideUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
-      .card h2 {
-        font-size: 24px;
-        margin-bottom: 20px;
-        color: #ffb400;
+      .hero-section h1 {
+        font-size: 3.5em;
+        color: #58a6ff;
+        margin-bottom: 15px;
+        font-weight: 700;
+        text-shadow: 0 0 15px rgba(88, 166, 255, 0.4);
       }
 
-      .card p {
-        margin-bottom: 20px;
-        font-size: 16px;
-        color: #ccc;
+      .hero-section p {
+        font-size: 1.2em;
+        color: #c9d1d9;
+        margin-bottom: 30px;
+        line-height: 1.8;
       }
 
-      .card button {
-        background-color: #ffb400;
-        color: #111;
-        padding: 15px;
+      .hero-section .cta-button {
+        background-color: #28a745; /* Verde vibrante */
+        color: #0d1117;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 1.1em;
+        font-weight: 700;
+        transition:
+          background-color 0.3s ease,
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+        text-decoration: none; /* Para usar como link */
+        display: inline-block;
+      }
+
+      .hero-section .cta-button:hover {
+        background-color: #218838; /* Verde mais escuro no hover */
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Navbar */
+      .navbar {
+        width: 100%;
+        max-width: 1200px;
+        background-color: #161b22;
+        padding: 18px 25px;
+        border-radius: 12px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 40px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+      }
+
+      /* Logo na Navbar */
+      .navbar .logo {
+        height: 40px;
+        margin-right: 20px;
+        vertical-align: middle;
+      }
+
+      .navbar button {
+        background-color: #58a6ff;
+        color: #0d1117;
+        padding: 12px 20px;
         border: none;
         border-radius: 8px;
         cursor: pointer;
-        font-size: 16px;
+        font-size: 17px;
+        margin: 0 12px 10px;
         transition:
-          background-color 0.3s,
-          transform 0.3s;
+          background-color 0.3s ease,
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+        font-weight: 700;
       }
 
-      .card button:hover {
-        background-color: #ffa500;
+      .navbar button:hover {
+        background-color: #79c0ff;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+      }
+
+      /* Estilo para botão ativo na Navbar */
+      .navbar button.active-nav-btn {
+        background-color: #79c0ff; /* Azul mais claro */
+        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+        transform: translateY(0);
+        border: 2px solid #58a6ff;
+        color: #0d1117;
+      }
+
+      /* Módulos Gerais */
+      .module-section {
+        display: none;
+        background-color: #161b22;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        padding: 35px;
+        width: 100%;
+        max-width: 800px;
+        margin-bottom: 30px;
+        border: 2px solid #58a6ff;
+        transition:
+          opacity 0.6s ease-in-out,
+          transform 0.3s ease;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      .module-section.active {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Estilo dos Cards em Geral (aplicado a Gerador e Criador) */
+      .module-section h2,
+      .module-section h3 {
+        font-size: 28px;
+        margin-bottom: 25px;
+        color: #58a6ff;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .module-section p {
+        margin-bottom: 25px;
+        font-size: 17px;
+        color: #c9d1d9;
+        line-height: 1.6;
+        text-align: center;
+      }
+
+      .module-section button {
+        background-color: #58a6ff;
+        color: #0d1117;
+        padding: 16px 28px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 18px;
+        transition:
+          background-color 0.3s ease,
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+        font-weight: 700;
+      }
+
+      .module-section button:hover {
+        background-color: #79c0ff;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Gerador de Texto (Desban, API e Fake Chat) Específico */
+      #generator-module .result,
+      #generator-api-module .result,
+      #generator-fakechat-module .result {
+        margin-top: 30px;
+        background-color: #0d1117;
+        padding: 25px;
+        border-radius: 10px;
+        display: none;
+        color: #e6edf3;
+        font-size: 17px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        text-align: left;
+      }
+
+      #generator-module .result h3,
+      #generator-api-module .result h3,
+      #generator-fakechat-module .result h3 {
+        color: #58a6ff;
+        margin-bottom: 10px;
+        font-size: 22px;
+        text-align: left;
+      }
+
+      #generator-module .result p,
+      #generator-api-module .result p,
+      #generator-fakechat-module .result p {
+        margin-bottom: 15px;
+        font-size: 16px;
+        color: #c9d1d9;
+        text-align: left;
+        white-space: pre-wrap;
+      }
+
+      #generator-module .copy-btn,
+      #generator-api-module .copy-btn,
+      #generator-fakechat-module .copy-btn {
+        background-color: #28a745;
+        color: white;
+        padding: 14px 25px;
+        border-radius: 8px;
+        font-size: 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 15px;
+      }
+
+      #generator-module .copy-btn i,
+      #generator-api-module .copy-btn i,
+      #generator-fakechat-module .copy-btn i {
+        margin-right: 8px;
+      }
+
+      #generator-module .copy-btn:hover,
+      #generator-api-module .copy-btn:hover,
+      #generator-fakechat-module .copy-btn:hover {
+        background-color: #218838;
+        transform: translateY(-2px);
+      }
+
+      /* Campo de entrada de texto opcional para geradores */
+      .generator-input-group {
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .generator-input-group label {
+        margin-bottom: 8px;
+        font-size: 16px;
+        color: #c9d1d9;
+      }
+
+      .generator-input-group input[type="text"],
+      .generator-input-group textarea,
+      .generator-input-group select {
+        width: 80%;
+        max-width: 400px;
+        padding: 10px 15px;
+        border-radius: 8px;
+        border: 1px solid #30363d;
+        background-color: #0d1117;
+        color: #e6edf3;
+        font-size: 16px;
+      }
+
+      .generator-input-group textarea {
+        resize: vertical; /* Permite redimensionar verticalmente */
+        min-height: 80px;
+      }
+
+      /* Chatbot */
+      #chatbot-module .chat-container {
+        background: #1a1a1a;
+        width: 100%;
+        max-width: 500px;
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: 600px;
+        overflow: hidden;
+      }
+
+      #chatbot-module .chat-header {
+        background-color: #075e54;
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 600;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      }
+
+      #chatbot-module .chat-header img {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        margin-right: 12px;
+        border: 2px solid #fff;
+      }
+
+      #chatbot-module .chat-status {
+        font-size: 13px;
+        font-weight: 400;
+        opacity: 0.9;
+        color: #c9d1d9;
+      }
+
+      #chatbot-module .init-screen {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding: 20px;
+        text-align: center;
+      }
+
+      #chatbot-module .loader {
+        width: 100%;
+        background: #21262d;
+        height: 10px;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 25px;
+      }
+
+      #chatbot-module .loader-bar {
+        height: 100%;
+        width: 0;
+        background: #58a6ff;
+        animation: loading 2s forwards;
+      }
+
+      @keyframes loading {
+        to {
+          width: 100%;
+        }
+      }
+
+      #chatbot-module .rotate-icon {
+        display: inline-block;
+        animation: rotate 1s linear infinite;
+        margin-right: 8px;
+        color: #58a6ff;
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      #chatbot-module .chat-box {
+        flex-grow: 1;
+        display: none;
+        flex-direction: column;
+        gap: 12px;
+        overflow-y: auto;
+        padding: 20px;
+        background-image: url("https://wallpaperaccess.com/full/763660.jpg");
+        background-size: cover;
+        background-position: center;
+        background-blend-mode: multiply;
+        background-color: rgba(0, 0, 0, 0.3);
+      }
+
+      #chatbot-module .bot-message,
+      #chatbot-module .user-message {
+        max-width: 85%;
+        padding: 14px 18px;
+        border-radius: 18px;
+        word-wrap: break-word;
+        line-height: 1.5;
+        position: relative;
+        font-size: 16px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      }
+
+      #chatbot-module .bot-message {
+        background-color: #21262d;
+        color: #c9d1d9;
+        align-self: flex-start;
+        border-bottom-left-radius: 6px;
+      }
+
+      #chatbot-module .user-message {
+        background-color: #0d4b40;
+        color: white;
+        align-self: flex-end;
+        border-bottom-right-radius: 6px;
+      }
+
+      #chatbot-module .message-status {
+        position: absolute;
+        bottom: 4px;
+        right: 8px;
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      #chatbot-module .message-status.read {
+        color: #34b7f1;
+      }
+
+      #chatbot-module .typing-indicator {
+        font-style: italic;
+        opacity: 0.8;
+        padding: 8px 15px;
+        margin-bottom: 10px;
+        align-self: flex-start;
+        color: #c9d1d9;
+        font-size: 15px;
+      }
+
+      #chatbot-module .chat-buttons-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 15px;
+        justify-content: center;
+        padding: 0 20px 15px 20px;
+      }
+
+      #chatbot-module .chat-button {
+        background-color: #58a6ff;
+        color: #0d1117;
+        border: none;
+        padding: 12px 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: 600;
+        transition: background 0.3s ease, transform 0.2s ease;
+      }
+
+      #chatbot-module .chat-button:hover {
+        background-color: #79c0ff;
+        transform: translateY(-2px);
+      }
+
+      #chatbot-module .back-btn {
+        background-color: #444;
+        color: #e6edf3;
+      }
+
+      #chatbot-module .back-btn:hover {
+        background-color: #555;
+      }
+
+      #chatbot-module .chat-input-area {
+        display: flex;
+        padding: 15px 20px;
+        background-color: #161b22;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        border-top: 1px solid #21262d;
+      }
+
+      #chatbot-module .chat-input-area input {
+        flex-grow: 1;
+        padding: 12px 18px;
+        border-radius: 25px;
+        border: 1px solid #30363d;
+        background-color: #21262d;
+        color: #e6edf3;
+        font-size: 16px;
+        margin-right: 12px;
+      }
+
+      #chatbot-module .chat-input-area input::placeholder {
+        color: #8b949e;
+      }
+
+      #chatbot-module .chat-input-area button {
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+
+      #chatbot-module .chat-input-area button:hover {
+        background-color: #218838;
         transform: scale(1.05);
       }
 
-      .result {
-        margin-top: 20px;
-        background-color: #222;
-        padding: 20px;
-        border-radius: 8px;
-        display: none;
+      /* Card Criador */
+      #creator-module .card {
+        background-color: #161b22;
+        padding: 35px;
+        border-radius: 15px;
+        text-align: center;
+        width: 100%;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        border: 2px solid #58a6ff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #creator-module .card h3 {
+        color: #58a6ff;
+      }
+
+      #creator-module .creator-avatar {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 25px;
+        border: 4px solid #58a6ff;
+        box-shadow: 0 0 15px rgba(88, 166, 255, 0.6);
+        transition: transform 0.3s ease;
+      }
+
+      #creator-module .creator-avatar:hover {
+        transform: scale(1.05);
+      }
+
+      #creator-module .social-links {
+        display: block;
+        margin-top: 30px;
+        width: 100%;
+      }
+
+      #creator-module .social-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #007bff;
         color: #fff;
-        font-size: 16px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        padding: 14px 20px;
+        text-decoration: none;
+        margin: 12px auto;
+        font-size: 18px;
+        border-radius: 10px;
+        font-weight: 600;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        max-width: 300px;
       }
 
-      .copy-btn {
-        background-color: #008cba;
-        color: white;
-        padding: 12px 20px;
-        border: none;
-        border-radius: 5px;
+      #creator-module .social-links a i {
+        margin-right: 12px;
+        font-size: 20px;
+      }
+
+      #creator-module .social-links a:hover {
+        background-color: #0056b3;
+        transform: translateY(-3px);
+      }
+
+      #creator-module .social-links a.access-button {
+        background-color: #28a745;
+      }
+
+      #creator-module .social-links a.access-button:hover {
+        background-color: #218838;
+      }
+
+      #creator-module .card-footer {
+        margin-top: 30px;
+        font-size: 15px;
+        color: #8b949e;
+      }
+
+      #creator-module .card-footer a {
+        color: #58a6ff;
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      #creator-module .card-footer a:hover {
+        color: #79c0ff;
+      }
+
+      /* Nova seção: Perguntas Frequentes (FAQ) */
+      #faq-module .faq-item {
+        background-color: #0d1117;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        padding: 20px;
         cursor: pointer;
-        font-size: 14px;
-        transition: background-color 0.3s;
+        transition: all 0.3s ease;
+        border: 1px solid #30363d;
       }
 
-      .copy-btn:hover {
-        background-color: #007bb5;
+      #faq-module .faq-item:hover {
+        border-color: #58a6ff;
+        box-shadow: 0 0 10px rgba(88, 166, 255, 0.2);
       }
 
-      /* Responsividade */
+      #faq-module .faq-question {
+        font-size: 1.15em;
+        color: #e6edf3;
+        font-weight: 600;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      #faq-module .faq-question i {
+        transition: transform 0.3s ease;
+      }
+
+      #faq-module .faq-answer {
+        font-size: 1em;
+        color: #c9d1d9;
+        margin-top: 15px;
+        display: none; /* Inicia oculto */
+        line-height: 1.6;
+        padding-top: 10px;
+        border-top: 1px solid #21262d;
+      }
+
+      #faq-module .faq-item.active .faq-answer {
+        display: block;
+      }
+
+      #faq-module .faq-item.active .faq-question i {
+        transform: rotate(180deg);
+      }
+
+      /* Seção de Contato */
+      #contact-module .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        max-width: 500px;
+        margin: 0 auto;
+        text-align: left;
+      }
+
+      #contact-module .contact-form label {
+        font-size: 16px;
+        color: #c9d1d9;
+      }
+
+      #contact-module .contact-form input,
+      #contact-module .contact-form textarea {
+        padding: 12px 15px;
+        border-radius: 8px;
+        border: 1px solid #30363d;
+        background-color: #0d1117;
+        color: #e6edf3;
+        font-size: 16px;
+        width: 100%;
+      }
+
+      #contact-module .contact-form textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      #contact-module .contact-form button {
+        background-color: #28a745;
+        color: white;
+        padding: 15px 25px;
+        border-radius: 10px;
+        font-size: 18px;
+        font-weight: 700;
+        transition: background-color 0.3s ease;
+      }
+
+      #contact-module .contact-form button:hover {
+        background-color: #218838;
+      }
+
+      #contact-module .contact-info {
+        margin-top: 30px;
+        text-align: center;
+        font-size: 17px;
+        color: #c9d1d9;
+      }
+
+      #contact-module .contact-info a {
+        color: #58a6ff;
+        text-decoration: none;
+      }
+
+      #contact-module .contact-info a:hover {
+        text-decoration: underline;
+      }
+
+
+      /* Responsividade Geral */
       @media (max-width: 768px) {
-        .card {
-          width: 90%;
-          padding: 20px;
+        body {
+          padding: 10px;
         }
-
-        .card h2 {
+        .hero-section h1 {
+          font-size: 2.5em;
+        }
+        .hero-section p {
+          font-size: 1em;
+        }
+        .hero-section .cta-button {
+          padding: 12px 25px;
+          font-size: 1em;
+        }
+        .navbar {
+          flex-wrap: wrap;
+          justify-content: center;
+          padding: 10px;
+          margin-bottom: 25px;
+        }
+        .navbar button {
+          margin: 5px;
+          font-size: 14px;
+          padding: 10px 15px;
+        }
+        .module-section {
+          width: 98%;
+          padding: 20px;
+          border-radius: 12px;
+        }
+        .module-section h2,
+        .module-section h3 {
+          font-size: 24px;
+          margin-bottom: 20px;
+        }
+        .module-section p {
+          font-size: 15px;
+          margin-bottom: 20px;
+        }
+        .module-section button {
+          padding: 12px 20px;
+          font-size: 16px;
+        }
+        #generator-module .result,
+        #generator-api-module .result,
+        #generator-fakechat-module .result {
+          padding: 15px;
+        }
+        #generator-module .result h3,
+        #generator-api-module .result h3,
+        #generator-fakechat-module .result h3 {
           font-size: 20px;
         }
-
-        .card p {
-          font-size: 14px;
+        #generator-module .result p,
+        #generator-api-module .result p,
+        #generator-fakechat-module .result p {
+          font-size: 15px;
         }
-
-        .card button {
-          padding: 12px;
-          font-size: 14px;
-        }
-
-        .copy-btn {
+        #generator-module .copy-btn,
+        #generator-api-module .copy-btn,
+        #generator-fakechat-module .copy-btn {
           padding: 10px 18px;
-          font-size: 12px;
+          font-size: 14px;
         }
-      }
-
-      @media (max-width: 480px) {
-        .card h2 {
+        #chatbot-module .chat-container {
+          height: 90vh;
+          border-radius: 0;
+        }
+        #chatbot-module .chat-header {
+          border-radius: 0;
+        }
+        #chatbot-module .chat-box {
+          padding: 15px;
+          gap: 10px;
+        }
+        #chatbot-module .bot-message,
+        #chatbot-module .user-message {
+          max-width: 90%;
+          padding: 12px 15px;
+          font-size: 15px;
+        }
+        #chatbot-module .chat-input-area input {
+          font-size: 15px;
+          padding: 10px 15px;
+        }
+        #chatbot-module .chat-input-area button {
+          width: 45px;
+          height: 45px;
           font-size: 18px;
         }
-
-        .card button {
-          padding: 10px;
-          font-size: 14px;
+        #creator-module .social-links a {
+          font-size: 16px;
+          padding: 10px 15px;
         }
-
-        .copy-btn {
-          padding: 8px 16px;
-          font-size: 12px;
+        #creator-module .social-links a i {
+          font-size: 18px;
         }
       }
     </style>
   </head>
   <body>
-    <div class="card">
+    <section class="hero-section" id="home">
+      <h1>Desban Solutions: Sua Ajuda Rápida no WhatsApp</h1>
+      <p>
+        Ferramentas e suporte para resolver seus problemas de banimento e otimizar
+        sua comunicação no WhatsApp. Recupere seu acesso e aprenda a evitar futuras
+        dores de cabeça!
+      </p>
+      <a href="https://t.me/OVERBANSUPORTE_BOT" target="_blank" rel="noopener noreferrer" class="cta-button">Começar Agora!</a>
+    </section>
+
+    <nav class="navbar" id="main-content">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1200px-WhatsApp.svg.png" alt="Desban Solutions Logo" class="logo">
+      <button id="btn-generator" onclick="showModule('generator')">Gerador de Texto Desban</button>
+      <button id="btn-generator-api" onclick="showModule('generator-api')">Gerador Texto Ban API</button>
+      <button id="btn-generator-fakechat" onclick="showModule('generator-fakechat')">Gerador Texto Fake Chat</button>
+      <button id="btn-chatbot" onclick="showModule('chatbot')">Chatbot de Atendimento</button>
+      <button id="btn-faq" onclick="showModule('faq')">FAQ - Perguntas Frequentes</button>
+      <button id="btn-creator" onclick="showModule('creator')">Criador do Site</button>
+      <button id="btn-contact" onclick="showModule('contact')">Contato</button>
+    </nav>
+
+    <section id="generator-module" class="module-section active">
       <h2>Gerador de Texto e Assunto para Desbanimento</h2>
       <p>
-        Clique no botão abaixo para gerar um texto e assunto aleatório para
-        ajudá-lo no processo de recuperação de seu número banido.
+        Use esta ferramenta para criar rapidamente textos e assuntos eficazes
+        para solicitar o desbanimento do seu número no WhatsApp. Facilite o
+        processo de recuperação!
       </p>
-      <button onclick="generateText()">Gerar Texto</button>
-      <div class="result" id="result">
-        <h3>Assunto:</h3>
-        <p id="subject"></p>
-        <h3>Texto:</h3>
-        <p id="text"></p>
-        <button class="copy-btn" onclick="copyText()">
-          Copiar Assunto e Texto
+      <div class="generator-input-group">
+        <label for="input-number">Seu Número de WhatsApp (com DDD):</label>
+        <input type="text" id="input-number" placeholder="Ex: +5511987654321" />
+      </div>
+      <div class="generator-input-group">
+        <label for="input-period">Período de inatividade/bloqueio:</label>
+        <input type="text" id="input-period" placeholder="Ex: alguns dias, 1 semana, 2 meses" />
+      </div>
+      <div class="generator-input-group">
+        <label for="input-usage">Para que você usa o WhatsApp?</label>
+        <input type="text" id="input-usage" placeholder="Ex: trabalho, estudos, comunicação familiar" />
+      </div>
+      <button onclick="generateDesbanText()">Gerar Texto</button>
+      <div class="result" id="desban-result">
+        <h3>Assunto Sugerido:</h3>
+        <p id="desban-subject"></p>
+        <h3>Texto Sugerido:</h3>
+        <p id="desban-text"></p>
+        <button class="copy-btn" onclick="copyDesbanText()">
+          <i class="fas fa-copy"></i> Copiar Assunto e Texto
         </button>
       </div>
-    </div>
+    </section>
+
+    <section id="generator-api-module" class="module-section">
+      <h2>Gerador de Texto para Banimento via Grupo API</h2>
+      <p>
+        Gere textos persuasivos com links de WhatsApp API para denunciar grupos
+        ou números. Use com responsabilidade e siga as instruções para o
+        banimento via Grupo API.
+      </p>
+      <button onclick="generateApiText()">Gerar Texto de Banimento</button>
+      <div class="result" id="api-result">
+        <h3>Texto de Banimento Sugerido:</h3>
+        <p id="api-text"></p>
+        <button class="copy-btn" onclick="copyApiText()">
+          <i class="fas fa-copy"></i> Copiar Texto
+        </button>
+      </div>
+
+      <div class="api-tutorial" style="margin-top: 40px; text-align: left">
+        <h3 style="color: #58a6ff; margin-bottom: 15px">
+          Como usar o Banimento via Grupo API:
+        </h3>
+        <p style="color: #c9d1d9; font-size: 16px; margin-bottom: 10px">
+          Para banir via API, o processo envolve a criação de um grupo e a
+          inserção de conteúdo específico na biografia ou mensagens.
+        </p>
+        <ul style="color: #c9d1d9; font-size: 16px; margin-left: 20px">
+          <li style="margin-bottom: 8px">
+            1. **Crie um grupo novo** no WhatsApp.
+          </li>
+          <li style="margin-bottom: 8px">
+            2. **Adicione o número alvo** na **bio do grupo** (descrição do
+            grupo).
+          </li>
+          <li style="margin-bottom: 8px">
+            3. **Cole o texto de banimento gerado** (ex: sobre apostas, sites
+            perigosos) nas **mensagens do grupo**.
+          </li>
+          <li style="margin-bottom: 8px">
+            4. **Denuncie o grupo e o alvo** com **3 ou mais números diferentes**.
+          </li>
+          <li style="margin-bottom: 8px">
+            5. **Passe o ADM** (administrador) para o número alvo e **saia do
+            grupo**.
+          </li>
+          <li style="margin-bottom: 8px">
+            **Dica:** Você também pode tentar sem adicionar o alvo, focando
+            apenas na denúncia do grupo com o conteúdo malicioso na bio e/ou
+            mensagens.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="generator-fakechat-module" class="module-section">
+      <h2>Gerador de Texto para Banimento via Fake Chat</h2>
+      <p>
+        Gere textos com conteúdo chamativo para utilizar no método de Fake Chat.
+        Esta é uma ferramenta para auxiliar no processo de banimento de contas
+        que violam as políticas do WhatsApp.
+      </p>
+      <button onclick="generateFakeChatText()">Gerar Texto Fake Chat</button>
+      <div class="result" id="fakechat-result">
+        <h3>Texto de Banimento Sugerido:</h3>
+        <p id="fakechat-text"></p>
+        <button class="copy-btn" onclick="copyFakeChatText()">
+          <i class="fas fa-copy"></i> Copiar Texto
+        </button>
+      </div>
+
+      <div class="fakechat-tutorial" style="margin-top: 40px; text-align: left">
+        <h3 style="color: #58a6ff; margin-bottom: 15px">
+          Como usar o Banimento via Fake Chat:
+        </h3>
+        <p style="color: #c9d1d9; font-size: 16px; margin-bottom: 10px">
+          Para banir via Fake Chat, você precisa de 1 ou 2 números de apoio
+          (ou amigos) para te ajudar a denunciar. Isso cria um volume de
+          denúncias que pode levar ao banimento do número alvo.
+        </p>
+        <ul style="color: #c9d1d9; font-size: 16px; margin-left: 20px">
+          <li style="margin-bottom: 8px">
+            1. Instale um **WhatsApp imune** (disponível para Android) ou
+            **Watusi** (para iOS, via jailbreak ou ferramentas como Scarlet).
+          </li>
+          <li style="margin-bottom: 8px">
+            2. Ative o recurso de **fake chat** com o número do alvo que deseja
+            banir.
+          </li>
+          <li style="margin-bottom: 8px">
+            3. **Envie o texto de banimento gerado** (com links de risco ou
+            conteúdo proibido) **10 a 30 vezes no fake chat** com o alvo e mais
+            **20 vezes no perfil do alvo** (na seção de denúncia).
+          </li>
+          <li style="margin-bottom: 8px">
+            4. Se tiver um segundo número ou um amigo, eles também devem
+            denunciar o alvo com frequência para maior eficácia.
+          </li>
+          <li style="margin-bottom: 8px">
+            **Dica Importante:** Se o banimento não ocorrer, tente variar o
+            texto da denúncia com outros conteúdos proibidos. Números de
+            WhatsApp *virgens* (pouco usados ou novos) tendem a funcionar mais
+            rapidamente para denúncias, pois têm menos 'reputação' no sistema.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="chatbot-module" class="module-section">
+      <div class="chat-container">
+        <div class="chat-header">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1200px-WhatsApp.svg.png"
+            alt="Bot Avatar"
+          />
+          <div>
+            Bot de Atendimento
+            <div id="bot-status" class="chat-status">online</div>
+          </div>
+        </div>
+
+        <div class="init-screen" id="init-screen-chatbot">
+          <div class="loader"><div class="loader-bar"></div></div>
+          <p>
+            <span class="rotate-icon">⏳</span> Aguarde... preparando seu
+            atendimento virtual.
+          </p>
+          <button class="chat-button" onclick="startChat()">
+            Iniciar Atendimento
+          </button>
+        </div>
+
+        <div class="chat-box" id="chat-box-chatbot"></div>
+
+        <div class="chat-input-area">
+          <input
+            type="text"
+            id="user-input"
+            placeholder="Digite sua mensagem..."
+            onkeypress="handleUserInput(event)"
+          />
+          <button onclick="sendUserMessage()">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq-module" class="module-section">
+      <h2>Perguntas Frequentes (FAQ)</h2>
+      <p>
+        Encontre respostas para as dúvidas mais comuns sobre banimento,
+        desbanimento e uso das ferramentas do WhatsApp.
+      </p>
+
+      <div class="faq-item" onclick="toggleFaq('faq1')">
+        <div class="faq-question">
+          O que causa o banimento de uma conta no WhatsApp?
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer" id="faq1">
+          <p>O WhatsApp pode banir contas por várias razões, incluindo:</p>
+          <ul>
+            <li>
+              Uso de aplicativos não oficiais (GBWhatsApp, WhatsApp Plus, etc.).
+            </li>
+            <li>
+              Envio excessivo de mensagens para contatos desconhecidos ou em massa (spam).
+            </li>
+            <li>Ser bloqueado ou denunciado por muitos usuários em um curto período.</li>
+            <li>
+              Compartilhamento de conteúdo ilegal, ofensivo, de ódio, violento ou
+              que viole os Termos de Serviço do WhatsApp.
+            </li>
+            <li>Automação de mensagens.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq('faq2')">
+        <div class="faq-question">
+          Como posso saber se minha conta foi banida permanentemente?
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer" id="faq2">
+          <p>
+            Quando você tenta usar o WhatsApp, uma mensagem geralmente aparece
+            informando que seu número está "banido" ou que "não está autorizado
+            a usar o WhatsApp". Se a mensagem não especificar um período de
+            tempo ou indicar que o banimento é temporário, é provável que seja
+            permanente. Em casos de banimento permanente, o aplicativo não
+            permitirá que você registre o número novamente.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq('faq3')">
+        <div class="faq-question">
+          Posso usar as ferramentas de banimento para qualquer pessoa?
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer" id="faq3">
+          <p>
+            **AVISO LEGAL:** As ferramentas de banimento (Fake Chat e Grupo API)
+            disponibilizadas neste site são para fins informativos e educacionais,
+            com o objetivo de demonstrar vulnerabilidades ou métodos de segurança.
+            **O uso indevido dessas ferramentas para fins maliciosos, assédio,
+            bullying ou qualquer atividade ilegal é estritamente proibido e de
+            total responsabilidade do usuário.** A "Desban Solutions" não se
+            responsabiliza por qualquer uso indevido ou consequências resultantes.
+            Utilize sempre com **ética e responsabilidade**.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq('faq4')">
+        <div class="faq-question">
+          Qual a diferença entre Banimento via Fake Chat e Grupo API?
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer" id="faq4">
+          <p>
+            **Banimento via Fake Chat:** Utiliza aplicativos modificados (imunes)
+            para simular conversas com conteúdo proibido. O objetivo é gerar
+            provas forjadas para denúncia, fazendo com que o WhatsApp acredite
+            que o alvo está violando as regras. Geralmente requer mais denúncias
+            de múltiplos números.
+          </p>
+          <p>
+            **Banimento via Grupo API:** Envolve a criação de um grupo e a inserção
+            de links de WhatsApp API com conteúdo suspeito (aposta, phishing, etc.)
+            na bio ou mensagens do grupo. A denúncia se concentra no grupo e, por
+            extensão, no número alvo, caso ele seja o administrador ou tenha
+            interação direta. É considerado mais "automático" pelo sistema do WhatsApp.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq('faq5')">
+        <div class="faq-question">
+          Meu número foi desbanido. O que devo fazer para não ser banido novamente?
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer" id="faq5">
+          <p>
+            Após o desbanimento, é **fundamental** seguir as boas práticas para
+            evitar novas suspensões:
+          </p>
+          <ul>
+            <li>**Sempre use o aplicativo oficial do WhatsApp.**</li>
+            <li>
+              Evite enviar mensagens em massa (spam) ou para muitos contatos
+              desconhecidos rapidamente.
+            </li>
+            <li>
+              Cuidado com grupos: não entre em muitos grupos desconhecidos e
+              evite compartilhar conteúdo duvidoso.
+            </li>
+            <li>Não denuncie outros usuários de forma injustificada.</li>
+            <li>
+              Ative a **Verificação em Duas Etapas** para proteger sua conta.
+            </li>
+            <li>
+              Nunca compartilhe conteúdo ilegal, ofensivo, que promova ódio,
+              violência ou que viole os Termos de Serviço do WhatsApp.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="creator-module" class="module-section">
+      <div class="card">
+        <img
+          src="https://i.ibb.co/9m0zKNVJ/EF04-C6-F5-3-DA5-4-C01-8-FE4-C239-A7-D9-A54-C.gif"
+          alt="Foto de Perfil do Criador"
+          class="creator-avatar"
+        />
+        <h3>Conheça o Criador do Site</h3>
+        <p>
+          Descubra quem está por trás desta ferramenta e conecte-se nas redes
+          sociais para mais conteúdos e novidades.
+        </p>
+        <div class="social-links" id="social-links-creator">
+          <a
+            href="https://m.youtube.com/@apelaWar_yt/videos"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><i class="fab fa-youtube"></i> Acesse o YouTube: ApelaWar_yt</a
+          >
+          <a
+            href="https://br.pinterest.com/APELAWAR71/"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><i class="fab fa-pinterest"></i> Acesse o Pinterest: ApelaWar71</a
+          >
+          <a
+            href="https://t.me/OVERBANSUPORTE_BOT"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="access-button"
+            ><i class="fab fa-telegram-plane"></i> ACESSE AQUI - Telegram</a
+          >
+        </div>
+        <div class="card-footer">
+          <p>
+            Desenvolvido com dedicação por:
+            <a
+              href="https://m.youtube.com/@apelaWar_yt/videos"
+              target="_blank"
+              rel="noopener noreferrer"
+              >ApelaWar</a
+            >
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact-module" class="module-section">
+      <h2>Entre em Contato</h2>
+      <p>
+        Tem dúvidas, sugestões ou precisa de ajuda personalizada? Preencha o
+        formulário abaixo ou use nossos canais de comunicação.
+      </p>
+
+      <form class="contact-form" onsubmit="sendContactForm(event)">
+        <label for="contact-name">Seu Nome:</label>
+        <input type="text" id="contact-name" name="name" required />
+
+        <label for="contact-email">Seu E-mail:</label>
+        <input type="email" id="contact-email" name="email" required />
+
+        <label for="contact-subject">Assunto:</label>
+        <input type="text" id="contact-subject" name="subject" required />
+
+        <label for="contact-message">Sua Mensagem:</label>
+        <textarea id="contact-message" name="message" required></textarea>
+
+        <button type="submit">Enviar Mensagem</button>
+      </form>
+
+      <div class="contact-info">
+        <p>
+          Você também pode nos encontrar no Telegram para suporte rápido:
+          <a
+            href="https://t.me/OVERBANSUPORTE_BOT"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><i class="fab fa-telegram-plane"></i> @OVERBANSUPORTE_BOT</a
+          >
+        </p>
+        <p>
+          Para parcerias ou outras questões, envie um e-mail para:
+          <a href="mailto:overstore71@gmail.com"
+            >overstore71@gmail.com</a
+          >
+        </p>
+      </div>
+    </section>
 
     <script>
-      const texts = [
+      // Funções do gerador de texto para DESBANIMENTO
+      const desbanTexts = [
         {
           subject: "Clonagem no WhatsApp, ajuda necessária",
-          text: "Meu WhatsApp foi clonado e agora estou sem acesso. Solicito ajuda para recuperar o número, que pertence à minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi clonado e agora estou sem acesso. Solicito ajuda para recuperar o número, que pertence à minha empresa.",
         },
         {
           subject: "Meu WhatsApp foi comprometido, preciso de ajuda",
-          text: "Meu WhatsApp foi comprometido e agora estou sem acesso. Solicito ajuda para recuperar o número, que é de minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi comprometido e agora estou sem acesso. Solicito ajuda para recuperar o número, que é de minha empresa.",
         },
         {
           subject: "WhatsApp hackeado, preciso de assistência",
-          text: "Meu WhatsApp foi hackeado e estou sem acesso. Solicito assistência urgente para recuperar o número, que é de minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi hackeado e estou sem acesso. Solicito assistência urgente para recuperar o número, que é de minha empresa.",
         },
         {
           subject: "WhatsApp clonado, solicito recuperação imediata",
-          text: "Meu WhatsApp foi clonado e estou sem acesso. Solicito recuperação imediata, pois o número pertence à minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi clonado e estou sem acesso. Solicito recuperação imediata, pois o número pertence à minha empresa.",
         },
         {
           subject: "Fui vítima de clonagem no WhatsApp",
-          text: "Fui vítima de clonagem no WhatsApp e estou sem acesso. Solicito ajuda urgente para recuperar o número, que é da minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi vítima de clonagem no WhatsApp e estou sem acesso. Solicito ajuda urgente para recuperar o número, que é da minha empresa.",
         },
         {
           subject: "WhatsApp hackeado, preciso de ajuda para restaurar",
-          text: "Meu WhatsApp foi hackeado e preciso de ajuda para restaurá-lo. O número é da minha empresa e preciso de ajuda urgente.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi hackeado e preciso de ajuda para restaurá-lo. O número é da minha empresa e preciso de ajuda urgente.",
         },
         {
           subject: "Meu WhatsApp foi invadido, solicito ajuda urgente",
-          text: "Meu WhatsApp foi invadido e estou sem acesso. Solicito ajuda urgente para recuperar o número, que é de minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi invadido e estou sem acesso. Solicito ajuda urgente para recuperar o número, que é de minha empresa.",
         },
         {
           subject: "WhatsApp clonado, preciso de recuperação urgente",
-          text: "Meu WhatsApp foi clonado e estou sem acesso. Solicito recuperação urgente, pois o número é de minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi clonado e estou sem acesso. Solicito recuperação urgente, pois o número é de minha empresa.",
         },
         {
           subject: "Meu número foi hackeado, solicito ajuda imediata",
-          text: "Meu número foi hackeado no WhatsApp e agora estou sem acesso. Solicito ajuda imediata, pois o número é de minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi hackeado no WhatsApp e agora estou sem acesso. Solicito ajuda imediata, pois o número é de minha empresa.",
         },
         {
           subject: "Clonagem de WhatsApp, solicito recuperação urgente",
-          text: "Meu WhatsApp foi clonado e estou sem acesso ao número. Solicito recuperação urgente, pois o número é da minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi clonado e estou sem acesso ao número. Solicito recuperação urgente, pois o número é da minha empresa.",
         },
         {
           subject: "WhatsApp comprometido, solicito recuperação",
-          text: "Meu WhatsApp foi comprometido e preciso de ajuda urgente para recuperar o número, que pertence à minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi comprometido e preciso de ajuda urgente para recuperar o número, que pertence à minha empresa.",
         },
         {
           subject: "WhatsApp invadido, solicito ajuda imediata",
-          text: "Meu WhatsApp foi invadido e agora estou sem acesso. Solicito ajuda imediata, pois o número é de minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi invadido e agora estou sem acesso. Solicito ajuda imediata, pois o número é de minha empresa.",
         },
         {
           subject: "Meu WhatsApp foi hackeado, solicito ajuda urgente",
-          text: "Meu WhatsApp foi hackeado e agora estou sem acesso. Solicito ajuda urgente para recuperar o número, que pertence à minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi hackeado e agora estou sem acesso. Solicito ajuda urgente para recuperar o número, que pertence à minha empresa.",
         },
         {
           subject: "WhatsApp clonado, solicito assistência",
-          text: "Meu WhatsApp foi clonado e estou sem acesso. Solicito assistência urgente para restaurá-lo, pois o número é da minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi clonado e estou sem acesso. Solicito assistência urgente para restaurá-lo, pois o número é da minha empresa.",
         },
         {
           subject: "WhatsApp invadido, solicito recuperação imediata",
-          text: "Meu WhatsApp foi invadido e agora estou sem acesso. Solicito recuperação imediata, pois o número é de minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi invadido e agora estou sem acesso. Solicito recuperação imediata, pois o número é de minha empresa.",
         },
         {
           subject: "Fui vítima de clonagem no WhatsApp, preciso de ajuda",
-          text: "Fui vítima de clonagem no WhatsApp e preciso de ajuda para restaurar o número. O número é da minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] fui vítima de clonagem no WhatsApp e preciso de ajuda para restaurar o número. O número é da minha empresa.",
         },
         {
           subject: "Meu número foi clonado, preciso de recuperação urgente",
-          text: "Meu número foi clonado no WhatsApp e agora estou sem acesso. Solicito recuperação urgente para restaurá-lo, pois é da minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi clonado no WhatsApp e agora estou sem acesso. Solicito recuperação urgente para restaurá-lo, pois é da minha empresa.",
         },
         {
           subject: "WhatsApp hackeado, solicito ajuda imediata",
-          text: "Meu WhatsApp foi hackeado e agora estou sem acesso. Solicito ajuda imediata, pois o número é de minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi hackeado e agora estou sem acesso. Solicito ajuda imediata, pois o número é de minha empresa.",
         },
         {
           subject: "WhatsApp comprometido, preciso de assistência urgente",
-          text: "Meu WhatsApp foi comprometido e estou sem acesso. Solicito assistência urgente para recuperar o número, que é de minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi comprometido e estou sem acesso. Solicito assistência urgente para recuperar o número, que é de minha empresa.",
         },
         {
           subject: "Clonagem de WhatsApp, peço ajuda urgente",
-          text: "Fui vítima de clonagem no WhatsApp e estou sem acesso. Solicito ajuda urgente para recuperar o número, que é da minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] fui vítima de clonagem no WhatsApp e estou sem acesso. Solicito ajuda urgente para recuperar o número, que é da minha empresa.",
         },
         {
           subject: "Meu WhatsApp foi invadido",
-          text: "Meu WhatsApp foi invadido por outra pessoa e agora estou sem acesso. Solicito ajuda urgente para recuperar o número, que é da minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi invadido por outra pessoa e agora estou sem acesso. Solicito ajuda urgente para recuperar o número, que é da minha empresa.",
         },
         {
           subject: "WhatsApp clonado, por favor me ajudem",
-          text: "Meu WhatsApp foi clonado e estou impossibilitado de acessar. Peço que me ajudem a recuperar o número, que pertence à minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi clonado e estou impossibilitado de acessar. Peço que me ajudem a recuperar o número, que pertence à minha empresa.",
         },
         {
           subject: "Preciso recuperar meu WhatsApp",
-          text: "Meu WhatsApp foi hackeado e preciso de ajuda para recuperar o número. O número é utilizado pela minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi hackeado e preciso de ajuda para recuperar o número. O número é utilizado pela minha empresa.",
         },
         {
           subject: "WhatsApp clonado e bloqueado, ajuda urgente",
-          text: "Meu WhatsApp foi clonado e agora está bloqueado. Solicito que me ajudem a reativar o número, que é da minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi clonado e agora está bloqueado. Solicito que me ajudem a reativar o número, que é da minha empresa.",
         },
         {
           subject: "Fui vítima de clonagem no WhatsApp",
-          text: "Meu WhatsApp foi clonado, e estou sem acesso. Solicito ajuda para recuperar o número, que pertence à minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi clonado, e estou sem acesso. Solicito ajuda para recuperar o número, que pertence à minha empresa.",
         },
         {
           subject: "WhatsApp hackeado, preciso de ajuda para restaurar",
-          text: "Meu WhatsApp foi hackeado e agora estou sem acesso. Preciso de ajuda para restaurá-lo, pois o número é da minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi hackeado e agora estou sem acesso. Preciso de ajuda para restaurá-lo, pois o número é da minha empresa.",
         },
         {
           subject: "Meu número de WhatsApp foi clonado",
-          text: "Meu número foi clonado e estou sem acesso. Solicito ajuda para recuperar o número, que é da minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi clonado e estou sem acesso. Solicito ajuda para recuperar o número, que é da minha empresa.",
         },
         {
           subject: "WhatsApp invadido, preciso de recuperação",
-          text: "Meu WhatsApp foi invadido e estou impossibilitado de acessar. Solicito ajuda urgente para recuperar o número, que é de minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi invadido e estou impossibilitado de acessar. Solicito ajuda urgente para recuperar o número, que é de minha empresa.",
         },
         {
           subject: "WhatsApp hackeado, peço ajuda urgente",
-          text: "Meu WhatsApp foi hackeado e agora estou sem acesso. Solicito ajuda urgente para reverter essa situação, pois o número é de minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi hackeado e agora estou sem acesso. Solicito ajuda urgente para reverter essa situação, pois o número é de minha empresa.",
         },
         {
           subject: "Meu WhatsApp foi clonado, preciso de recuperação",
-          text: "Meu WhatsApp foi clonado e preciso de ajuda para recuperá-lo. O número é da minha empresa e preciso dele para o meu trabalho.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi clonado e preciso de ajuda para recuperá-lo. O número é da minha empresa e preciso dele para o meu trabalho.",
         },
         {
           subject: "Clonagem no WhatsApp, solicito recuperação",
-          text: "Fui vítima de clonagem no WhatsApp e estou sem acesso ao número. Solicito recuperação urgente, pois o número é da minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] fui vítima de clonagem no WhatsApp e estou sem acesso ao número. Solicito recuperação urgente, pois o número é da minha empresa.",
         },
         {
           subject: "WhatsApp comprometido, preciso de ajuda urgente",
-          text: "Meu WhatsApp foi comprometido e agora estou sem acesso ao número. Solicito ajuda urgente, pois o número é de minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi comprometido e agora estou sem acesso ao número. Solicito ajuda urgente, pois o número é de minha empresa.",
         },
         {
           subject: "WhatsApp clonado, ajuda necessária",
-          text: "Meu WhatsApp foi clonado e estou sem acesso. Solicito ajuda para reverter essa situação, pois o número pertence à minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi clonado e estou sem acesso. Solicito ajuda para reverter essa situação, pois o número pertence à minha empresa.",
         },
         {
           subject: "Clonagem de WhatsApp, preciso de ajuda",
-          text: "Meu WhatsApp foi clonado e estou sem acesso. Solicito ajuda urgente para recuperar o número, que é da minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi clonado e estou sem acesso. Solicito ajuda urgente para recuperar o número, que é da minha empresa.",
         },
         {
           subject: "WhatsApp invadido, solicito ajuda",
-          text: "Meu WhatsApp foi invadido e preciso de ajuda para recuperá-lo. O número é da minha empresa e preciso de ajuda urgente.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi invadido e preciso de ajuda para recuperá-lo. O número é da minha empresa e preciso de ajuda urgente.",
         },
         {
           subject: "Meu WhatsApp foi hackeado, ajuda necessária",
-          text: "Meu WhatsApp foi hackeado e estou sem acesso. Preciso de ajuda para restaurá-lo, pois o número é da minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi hackeado e estou sem acesso. Preciso de ajuda para restaurá-lo, pois o número é da minha empresa.",
         },
         {
           subject: "WhatsApp clonado e bloqueado, preciso de suporte",
-          text: "Meu WhatsApp foi clonado e agora está bloqueado. Solicito suporte urgente para reativar o número, que é da minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi clonado e agora está bloqueado. Solicito suporte urgente para reativar o número, que é da minha empresa.",
         },
         {
           subject: "Fui hackeado no WhatsApp, preciso de ajuda",
-          text: "Fui hackeado no WhatsApp e estou sem acesso ao número. Solicito ajuda urgente para reverter essa situação.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] fui hackeado no WhatsApp e estou sem acesso ao número. Solicito ajuda urgente para reverter essa situação.",
         },
         {
           subject: "Meu número foi clonado, solicito recuperação imediata",
-          text: "Meu número foi clonado no WhatsApp e agora estou sem acesso. Solicito recuperação imediata, pois o número é da minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi clonado no WhatsApp e agora estou sem acesso. Solicito recuperação imediata, pois o número é da minha empresa.",
         },
         {
           subject: "WhatsApp clonado, preciso de ajuda urgente",
-          text: "Meu WhatsApp foi clonado e preciso de ajuda urgente para recuperar o número, que pertence à minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi clonado e preciso de ajuda urgente para recuperar o número, que pertence à minha empresa.",
         },
         {
           subject: "Meu WhatsApp foi invadido, preciso de ajuda",
-          text: "Meu WhatsApp foi invadido e estou sem acesso. Solicito ajuda urgente para restaurar o número, que pertence à minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi invadido e estou sem acesso. Solicito ajuda urgente para restaurar o número, que pertence à minha empresa.",
         },
         {
           subject: "WhatsApp hackeado, preciso de recuperação imediata",
-          text: "Meu WhatsApp foi hackeado e agora estou sem acesso. Solicito recuperação imediata, pois o número é da minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi hackeado e agora estou sem acesso. Solicito recuperação imediata, pois o número é de minha empresa.",
         },
         {
-          subject:
-            "Meu número foi clonado e não consigo acessar. Solicito ajuda para recuperá-lo, pois o número é da minha empresa.",
-          text: "",
+          subject: "Meu número foi clonado e não consigo acessar. Solicito ajuda para recuperá-lo, pois o número é da minha empresa.",
+          text: "Olá, equipe do WhatsApp. Meu número [NUMERO] foi clonado e não consigo acessar. Solicito ajuda para recuperá-lo, pois o número é da minha empresa.",
         },
       ];
 
-      function generateText() {
-        const randomIndex = Math.floor(Math.random() * texts.length);
-        const selectedText = texts[randomIndex];
+      function generateDesbanText() {
+        const inputNumber = document.getElementById("input-number").value.trim();
+        const inputPeriod = document.getElementById("input-period").value.trim();
+        const inputUsage = document.getElementById("input-usage").value.trim();
+        const currentDate = new Date().toLocaleDateString("pt-BR");
 
-        document.getElementById("subject").textContent = selectedText.subject;
-        document.getElementById("text").textContent = selectedText.text;
-        document.getElementById("result").style.display = "block";
+        let selectedTextData = desbanTexts[Math.floor(Math.random() * desbanTexts.length)];
+
+        let generatedText = selectedTextData.text;
+        let generatedSubject = selectedTextData.subject;
+
+        if (inputNumber) {
+          generatedText = generatedText.replace("[NUMERO]", inputNumber);
+        } else {
+          generatedText = generatedText.replace("[NUMERO]", "[Seu_Número_Aqui]");
+        }
+
+        generatedText = generatedText.replace("[Período, ex: alguns dias ou 1 semana]", inputPeriod || "alguns dias");
+        generatedText = generatedText.replace("[Data_Atual_DD/MM/AAAA]", currentDate);
+        generatedText = generatedText.replace("[mencione o uso, ex: trabalho, estudos, comunicação familiar]", inputUsage || "trabalho, estudos e comunicação familiar");
+
+
+        document.getElementById("desban-subject").textContent = generatedSubject;
+        document.getElementById("desban-text").textContent = generatedText;
+        document.getElementById("desban-result").style.display = "block";
       }
 
-      function copyText() {
-        const subjectText = document.getElementById("subject").textContent;
-        const textContent = document.getElementById("text").textContent;
+
+      function copyDesbanText() {
+        const subjectText = document.getElementById("desban-subject")
+          .textContent;
+        const textContent = document.getElementById("desban-text").textContent;
 
         const textToCopy = `${subjectText}\n\n${textContent}`;
 
@@ -358,320 +1463,368 @@
           },
         );
       }
-    </script>
-  </body>
-</html>
 
-<!doctype html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chatbot Atendimento</title>
-    <style>
-      * {
-        box-sizing: border-box;
+      // Funções do gerador de texto para BANIMENTO VIA API
+      const apiBanTexts = [
+        `‼️ RECLAME SEU 🎁 PRÊMIO! Contate nosso call center no WhatsApp. Ao entrar em contato você receberá um 🎁 PRESENTE MISTERIOSO. Responda { 1* } CLIQUE NO LINK ABAIXO. O GUIA DA PLATAFORMA 💹IRA dará mais informações!!⤵️⤵️⤵️⤵️\nhttps://api.whatsapp.com/send?phone=`,
+        `💰 FIQUE RICO AGORA! Clique no link e resgate seu bônus GRÁTIS. Oferta por tempo limitado! Não perca! Responda { 2* } para saber mais! 🤑\nhttps://api.whatsapp.com/send?phone=`,
+        `🔞 CONTEÚDO ADULTO À FRENTE! Vídeos e fotos exclusivos disponíveis. Verifique sua idade respondendo { 3* } e clicando aqui: 👇\nhttps://api.whatsapp.com/send?phone=`,
+        `🚨 URGENTE: Sua conta foi comprometida! Clique imediatamente para proteger seus fundos e dados pessoais. Responda { 4* } para suporte. ⚠️\nhttps://api.whatsapp.com/send?phone=`,
+        `💸 GANHE R$500 TODO DIA! Participe do nosso programa de renda passiva. Sem esforço, basta clicar e começar a ganhar. Responda { 5* } para se inscrever agora!\nhttps://api.whatsapp.com/send?phone=`,
+        `🎁 SORTEIO DE IPHONE 15 GRÁTIS! Participe agora e seja um dos sortudos vencedores. Responda { 6* } e clique no link para entrar. Corra! ✨\nhttps://api.whatsapp.com/send?phone=`,
+        `📈 SEGREDOS DE CRIPTO REVELADOS! Aprenda a multiplicar seu dinheiro com nosso guia especialista. Responda { 7* } e invista com sabedoria! 🚀\nhttps://api.whatsapp.com/send?phone=`,
+        `🔥 ALERTAS DE OFERTAS QUENTES! Descontos incríveis em todos os produtos. Compre agora antes que acabem. Responda { 8* } para acesso exclusivo! 🛍️\nhttps://api.whatsapp.com/send?phone=`,
+        `🚫 VÍRUS DETECTADO! Seu dispositivo está em risco. Clique aqui para remover a ameaça e proteger sua privacidade. Responda { 9* } para escaneamento imediato. 🛡️\nhttps://api.whatsapp.com/send?phone=`,
+        `🎰 CASSINO BONANZA! Jogue e ganhe grandes prêmios diariamente. Giros grátis e jackpots enormes esperam por você. Responda { 10* } para se divertir! 🎉\nhttps://api.whatsapp.com/send?phone=`,
+        `🚨 AVISO: Acesso não autorizado detectado em sua conta! Proteja sua privacidade agora. Responda { 11* } e clique para verificar sua identidade. 🔒\nhttps://api.whatsapp.com/send?phone=`,
+        `✨ RECOMPENSA CAIXA MISTERIOSA! Desbloqueie um presente surpresa contatando nosso suporte. Responda { 12* } e receba seu prêmio especial! 🎁\nhttps://api.whatsapp.com/send?phone=`,
+        `🚀 LANÇAMENTO EM BREVE! Seja o primeiro a experimentar nosso produto revolucionário. Vagas limitadas. Responda { 13* } para acesso antecipado e benefícios! 🌟\nhttps://api.whatsapp.com/send?phone=`,
+        `💣 GRANDES PAGAMENTOS! Experimente a emoção de apostas altas. Grandes vitórias estão a apenas um clique. Responda { 14* } e comece a jogar! 💥\nhttps://api.whatsapp.com/send?phone=`,
+        `📈 DICAS DE MERCADO DE AÇÕES! Obtenha conselhos de especialistas para maximizar seus retornos. Aprenda os segredos de investidores de sucesso. Responda { 15* } para insights exclusivos! 📊\nhttps://api.whatsapp.com/send?phone=`,
+        `😈 SEGREDOS DA DARK WEB! Descubra o que eles não querem que você saiba. Acesse conhecimento proibido. Responda { 16* } para entrar em um mundo oculto. 🤫\nhttps://api.whatsapp.com/send?phone=`,
+        `🔥 CONTEÚDO PROIBIDO! Acesse materiais adultos exclusivos. Discrição aconselhada. Responda { 17* } para prosseguir por sua conta e risco. 🔞\nhttps://api.whatsapp.com/send?phone=`,
+        `🎁 SEU PRÊMIO ESPERA! Resgate sua recompensa especial clicando no link. Não perca esta oportunidade única! Responda { 18* } para desbloquear! 🎉\nhttps://api.whatsapp.com/send?phone=`,
+        `💸 BÔNUS EM DINHEIRO INSTANTÂNEO! Ganhe um bônus de inscrição ao se juntar hoje. Oferta por tempo limitado para novos membros. Responda { 19* } para resgatar seu dinheiro! 💰\nhttps://api.whatsapp.com/send?phone=`,
+        `😈 FERRAMENTAS SECRETAS DE HACKING! Aprenda a invadir qualquer sistema. Métodos avançados revelados. Responda { 20* } para acesso ilícito. ⚠️\nhttps://api.whatsapp.com/send?phone=`,
+      ];
+
+      function generateApiText() {
+        const randomIndex = Math.floor(Math.random() * apiBanTexts.length);
+        const selectedText = apiBanTexts[randomIndex];
+
+        document.getElementById("api-text").textContent = selectedText;
+        document.getElementById("api-result").style.display = "block";
       }
 
-      body {
-        font-family: "Segoe UI", sans-serif;
-        background-color: #111;
-        color: #fff;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
+      function copyApiText() {
+        const textContent = document.getElementById("api-text").textContent;
+
+        navigator.clipboard.writeText(textContent).then(
+          function () {
+            alert("Texto de banimento copiado com sucesso!");
+          },
+          function (err) {
+            alert("Erro ao copiar texto: " + err);
+          },
+        );
       }
 
-      .chat-container {
-        background: #1a1a1a;
-        width: 100%;
-        max-width: 500px;
-        border-radius: 15px;
-        padding: 20px;
-        box-shadow: 0 0 15px #000;
-        position: relative;
+      // Funções do gerador de texto para BANIMENTO VIA FAKE CHAT (AGORA MELHORADOS)
+      const fakeChatBanTexts = [
+        `🚨 OFERTA URGENTE CLARO! ✨ Controle 100GB + APPS ILIMITADOS por apenas R$1.000.000/mês. Última chance! Pix para ativação: bfea2d8e-1eae-483f-a01c-d18d234b8e29\n\n🎰 Ganhe DINHEIRO JOGANDO! Assista LIVES com garotas, aposte no Aviador e Tigre da Fortuna. Com R$10 você fatura até R$100 ao dia! Apps OFICIAIS Claro.\n\n👉 Responda *1* e clique no link para participar AGORA!!\nclaro-e.com/f2R2j\nhttps://claro.casino.com`,
+        `💥 BLACK FRIDAY MALUCA CLARO! 🚀 Plano Controle 100GB + APPS LIVRES por R$1.000.000/mês. Não perca! Pix para ativar: bfea2d8e-1eae-483f-a01c-d18d234b8e29\n\n🔞 CONTEÚDO ADULTO EXCLUSIVO e os melhores jogos de cassino te esperam. Ganhe muito no Aviador, Tigre da Fortuna. Fature com R$10. Apps OFICIAIS Claro.\n\n👉 Responda *2* e acesse já: \nclaro-e.com/f2R2j\nhttps://claro.casino.com`,
+        `⚠️ ALERTA DE SEGURANÇA! Seu chip Claro foi clonado! Troque-o e ative o novo plano de 100GB ILIMITADOS por R$1.000.000/mês. Pix URGENTE: bfea2d8e-1eae-483f-a01c-d18d234b8e29\n\n😈 Descubra um mundo PROIBIDO! Lives privadas com garotas e jogos de aposta que te farão MILIONÁRIO! Tigre da Fortuna, Aviador. Com R$10 você fatura R$100/dia. Apps OFICIAIS.\n\n👉 Responda *3* e clique aqui para ver: \nclaro-e.com/f2R2j\nhttps://claro.casino.com`,
+        `🎉 SUPER OFERTA CLARO! 🤑 Controle 100GB + APPS ILIMITADOS por R$1.000.000. Chave Pix para transferência: bfea2d8e-1eae-483f-a01c-d18d234b8e29\n\n🔥 Assista LIVES QUENTES e jogue os mais viciantes jogos de CASSINO! Aviador, Tigre da Fortuna. Com R$10 você pode faturar até R$100 ao dia! Apps OFICIAIS da Claro.\n\n👉 Responda *4* e clique no link para participar agora!!\nclaro-e.com/f2R2j\nhttps://claro.casino.com`,
+        `💸 GANHE R$1.000 POR DIA NA CLARO! 💰 Controle 100GB + APPS ILIMITADOS por R$1.000.000/mês. A melhor oportunidade! Pix: bfea2d8e-1eae-483f-a01c-d18d234b8e29\n\n🔞 VEJA AGORA LIVES SECRETAS com garotas e transforme R$10 em R$100 no Aviador e Tigre da Fortuna! Jogos OFICIAIS Claro.\n\n👉 Responda *5* e acesse o link para começar: \nclaro-e.com/f2R2j\nhttps://claro.casino.com`,
+        `🎁 CLARO TE DÁ UM IPHONE 15! 📱 Ative o plano Controle 100GB + APPS ILIMITADOS por R$1.000.000/mês e ganhe! Pix: bfea2d8e-1eae-483f-a01c-d18d234b8e29\n\n🎰 CASSINO AO VIVO e LIVES EXCLUSIVAS! Jogue Aviador e Tigre da Fortuna. Ganhe R$100 por dia com R$10. Apps OFICIAIS Claro.\n\n👉 Responda *6* e clique no link para resgatar seu prêmio: \nclaro-e.com/f2R2j\nhttps://claro.casino.com`,
+        `📈 DINHEIRO FÁCIL CLARO! 💸 Plano 100GB + APPS ILIMITADOS por R$1.000.000. A chance da sua vida! Pix: bfea2d8e-1eae-483f-a01c-d18d234b8e29\n\n🔥 LIVES MAIS HOT e JOGOS QUE VICIAM! Aviador, Tigre da Fortuna. Transforme R$10 em R$100. Apps OFICIAIS da Claro.\n\n👉 Responda *7* e acesse a plataforma: \nclaro-e.com/f2R2j\nhttps://claro.casino.com`,
+        `👑 O SEGREDO DOS RICOS NA CLARO! 💰 Plano Controle 100GB + APPS ILIMITADOS por R$1.000.000/mês. Invista no seu futuro! Pix: bfea2d8e-1eae-483f-a01c-d18d234b8e29\n\n🔞 ACESSO TOTAL A CONTEÚDO ADULTO e JOGOS DE AZAR EXPLOSIVOS! Aviador, Tigre da Fortuna. Ganhe R$100 com R$10. Apps OFICIAIS Claro.\n\n👉 Responda *8* e descubra os segredos: \nclaro-e.com/f2R2j\nhttps://claro.casino.com`,
+        `🚫 VÍRUS DETECTADO NA SUA CONTA CLARO! 🚨 Proteja seus dados. Ative o plano Controle 100GB + APPS ILIMITADOS por R$1.000.000/mês. Faça o Pix: bfea2d8e-1eae-483f-a01c-d18d234b8e29\n\n🎰 JOGOS DE CASSINO ONLINE! Aviador, Tigre da Fortuna. Garanta sua proteção e seu dinheiro! R$10 fatura R$100. Apps OFICIAIS Claro.\n\n👉 Responda *9* e clique no link para proteger-se: \nclaro-e.com/f2R2j\nhttps://claro.casino.com`,
+        `🎰 MEGA BÔNUS CLARO CASSINO! ✨ 100GB + APPS ILIMITADOS por R$1.000.000/mês. Jogue e ganhe! Pix: bfea2d8e-1eae-483f-a01c-d18d234b8e29\n\n💰 LIVES COM GAROTAS QUENTES e os melhores jogos de cassino. Aviador, Tigre da Fortuna. R$10 te dão R$100 por dia. Apps OFICIAIS Claro.\n\n👉 Responda *10* e comece a faturar: \nclaro-e.com/f2R2j\nhttps://claro.casino.com`,
+        `⚡️ ULTIMATE CLARO PROMO! 🌟 Controle 100GB + APPS ILIMITADOS por R$1.000.000. SÓ HOJE! Pix: bfea2d8e-1eae-483f-a01c-d18d234b8e29\n\n😈 Prepare-se para uma experiência EXPLOSIVA! Assista garotas em lives e jogue Aviador, Tigre da Fortuna para ganhar dinheiro. R$10 = R$100! Apps OFICIAIS Claro.\n\n👉 Responda *11* e clique para ação: \nclaro-e.com/f2R2j\nhttps://claro.casino.com`,
+        `🚀 CLARO INOVAÇÃO! 🤯 Controle 100GB + APPS ILIMITADOS por R$1.000.000/mês. Seja o primeiro a aproveitar! Pix: bfea2d8e-1eae-483f-a01c-d18d234b8e29\n\n🔞 ACESSO LIBERADO a conteúdo ADULTO e jogos de CASSINO VICIANTES! Aviador, Tigre da Fortuna. Ganhe R$100 com R$10. Apps OFICIAIS Claro.\n\n👉 Responda *12* e descubra a novidade: \nclaro-e.com/f2R2j\nhttps://claro.casino.com`,
+        `🔥 OFERTA DE FOGO CLARO! 🔥 BLACK FRIDAY: 100GB + APPS SEM CORTES por R$1.000.000/mês. Não perca! Pix: bfea2d8e-1eae-483f-a01c-d18d234b8e29\n\n🎰 JOGUE E GANHE com garotas! Aviador, Tigre da Fortuna. Fature R$100 por dia com R$10. Apps OFICIAIS da Claro.\n\n👉 Responda *13* e clique para a sorte: \nclaro-e.com/f2R2j\nhttps://claro.casino.com`,
+        `💎 OURO CLARO PARA VOCÊ! 💸 Plano Controle 100GB + APPS ILIMITADOS por R$1.000.000/mês. Sua mina de ouro! Pix: bfea2d8e-1eae-483f-a01c-d18d234b8e29\n\n🔞 LIVES PICANTES e JOGOS DE CASSINO QUE ENRIQUECEM! Aviador, Tigre da Fortuna. R$10 = R$100 garantido. Apps OFICIAIS Claro.\n\n👉 Responda *14* e garanta seu futuro: \nclaro-e.com/f2R2j\nhttps://claro.casino.com`,
+        `🚨 ALERTA DE FRAUDE! 🚫 Sua conta Claro está sob risco de acesso indevido. Proteja-se com o Controle 100GB + APPS ILIMITADOS por R$1.000.000. Pix: bfea2d8e-1eae-483f-a01c-d18d234b8e29\n\n🎰 JOGOS DE AZAR EXTREMOS e LIVES DE GAROTAS! Aviador, Tigre da Fortuna. Sua segurança em primeiro lugar! Apps OFICIAIS Claro.\n\n👉 Responda *15* e clique para se proteger: \nclaro-e.com/f2R2j\nhttps://claro.casino.com`,
+        `🎉 FESTA DE LUCROS CLARO! 💰 Controle 100GB + APPS ILIMITADOS por R$1.000.000. Participe e fature! Pix: bfea2d8e-1eae-483f-a01c-d18d234b8e29\n\n🔞 CONTEÚDO QUENTE e CASSINO DE VERDADE! Aviador, Tigre da Fortuna. Com R$10 você vira R$100. Apps OFICIAIS Claro.\n\n👉 Responda *16* e venha celebrar: \nclaro-e.com/f2R2j\nhttps://claro.casino.com`,
+        `🏆 VITÓRIA CLARO! 🏆 Plano Controle 100GB + APPS ILIMITADOS por R$1.000.000. Seja um campeão! Pix: bfea2d8e-1eae-483f-a01c-d18d234b8e29\n\n😈 LIVES PROIBIDAS e CASSINOS QUE PAGAM! Aviador, Tigre da Fortuna. R$10 viram R$100. Apps OFICIAIS da Claro.\n\n👉 Responda *17* e resgate sua vitória: \nclaro-e.com/f2R2j\nhttps://claro.casino.com`,
+        `💸 DINHEIRO NO SEU BOLSO CLARO! 🤑 100GB + APPS ILIMITADOS por R$1.000.000/mês. Oferta relâmpago! Pix: bfea2d8e-1eae-483f-a01c-d18d234b8e29\n\n🎰 JOGUE E FATURA ALTO! Aviador, Tigre da Fortuna. Assista lives com garotas. R$10 = R$100. Apps OFICIAIS Claro.\n\n👉 Responda *18* e clique para encher o bolso: \nclaro-e.com/f2R2j\nhttps://claro.casino.com`,
+        `🌟 O FUTURO É CLARO! 🚀 Controle 100GB + APPS ILIMITADOS por R$1.000.000/mês. Não fique para trás! Pix: bfea2d8e-1eae-483f-a01c-d18d234b8e29\n\n🔞 ACESSO TOTAL A CONTEÚDO ADULTO e JOGOS LUCRATIVOS! Aviador, Tigre da Fortuna. R$10 rendem R$100. Apps OFICIAIS Claro.\n\n👉 Responda *19* e comece a viver o futuro: \nclaro-e.com/f2R2j\nhttps://claro.casino.com`,
+        `🚨 ÚLTIMA CHANCE NA CLARO! ⏰ BLACK FRIDAY: 100GB + APPS À VONTADE por R$1.000.000. Finalizando estoque! Pix: bfea2d8e-1eae-483f-a01c-d18d234b8e29\n\n🔥 LIVES DE GAROTAS e JOGOS DE CASSINO QUE FAZEM DINHEIRO! Aviador, Tigre da Fortuna. Com R$10, R$100 é garantido. Apps OFICIAIS Claro.\n\n👉 Responda *20* e clique AGORA: \nclaro-e.com/f2R2j\nhttps://claro.casino.com`,
+      ];
+
+      function generateFakeChatText() {
+        const randomIndex = Math.floor(
+          Math.random() * fakeChatBanTexts.length,
+        );
+        const selectedText = fakeChatBanTexts[randomIndex];
+
+        document.getElementById("fakechat-text").textContent = selectedText;
+        document.getElementById("fakechat-result").style.display = "block";
       }
 
-      .init-screen {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 400px;
+      function copyFakeChatText() {
+        const textContent = document.getElementById("fakechat-text")
+          .textContent;
+
+        navigator.clipboard.writeText(textContent).then(
+          function () {
+            alert("Texto de banimento (Fake Chat) copiado com sucesso!");
+          },
+          function (err) {
+            alert("Erro ao copiar texto: " + err);
+          },
+        );
       }
 
-      .loader {
-        width: 100%;
-        background: #333;
-        height: 10px;
-        border-radius: 10px;
-        overflow: hidden;
-        margin-bottom: 20px;
-      }
-
-      .loader-bar {
-        height: 100%;
-        width: 0;
-        background: #ffb400;
-        animation: loading 2s forwards;
-      }
-
-      @keyframes loading {
-        to {
-          width: 100%;
-        }
-      }
-
-      .rotate-icon {
-        display: inline-block;
-        animation: rotate 1s linear infinite;
-        margin-right: 5px;
-      }
-
-      @keyframes rotate {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-
-      .chat-box {
-        display: none;
-        flex-direction: column;
-        gap: 10px;
-        max-height: 400px;
-        overflow-y: auto;
-        padding: 10px;
-        border-radius: 10px;
-        background-color: #000;
-      }
-
-      .bot-message,
-      .user-message {
-        max-width: 85%;
-        padding: 12px 15px;
-        border-radius: 12px;
-        word-wrap: break-word;
-        line-height: 1.4;
-      }
-
-      .bot-message {
-        background-color: #202c22;
-        color: #d4fcd4;
-        border: 2px solid #25d366;
-        align-self: flex-start;
-      }
-
-      .user-message {
-        background-color: #444;
-        color: white;
-        border: 2px solid #888;
-        align-self: flex-end;
-      }
-
-      .typing {
-        font-style: italic;
-        opacity: 0.6;
-      }
-
-      .chat-button {
-        background-color: #ffb400;
-        color: #000;
-        border: none;
-        padding: 10px 15px;
-        margin: 5px 5px 0 0;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 14px;
-        font-weight: bold;
-        transition: background 0.3s;
-      }
-
-      .chat-button:hover {
-        background-color: #ff9f00;
-      }
-
-      .back-btn {
-        background-color: #555;
-      }
-
-      .back-btn:hover {
-        background-color: #444;
-      }
-
-      @media (max-width: 600px) {
-        .chat-container {
-          border-radius: 0;
-          height: 100vh;
-          padding: 10px;
-        }
-
-        .chat-box {
-          max-height: calc(100vh - 150px);
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="chat-container">
-      <div class="init-screen" id="init-screen">
-        <div class="loader"><div class="loader-bar"></div></div>
-        <p>
-          <span class="rotate-icon">⏳</span> Aguarde... preparando atendimento
-        </p>
-        <button class="chat-button" onclick="startChat()">
-          Iniciar Atendimento
-        </button>
-      </div>
-
-      <div class="chat-box" id="chat-box"></div>
-    </div>
-
-    <script>
-      const chatBox = document.getElementById("chat-box");
-      const initScreen = document.getElementById("init-screen");
+      // Funções do chatbot
+      const chatBox = document.getElementById("chat-box-chatbot");
+      const initScreenChatbot = document.getElementById("init-screen-chatbot");
+      const botStatus = document.getElementById("bot-status");
+      const userInput = document.getElementById("user-input");
 
       function scrollToBottom() {
         chatBox.scrollTop = chatBox.scrollHeight;
       }
 
+      function setBotStatus(status) {
+        botStatus.textContent = status;
+      }
+
       function botTypingEffect(text, delay = 1200) {
-        const typing = document.createElement("p");
-        typing.classList.add("bot-message", "typing");
-        typing.textContent = "Digitando...";
-        chatBox.appendChild(typing);
+        setBotStatus("digitando...");
+        const typingIndicator = document.createElement("p");
+        typingIndicator.classList.add("typing-indicator");
+        typingIndicator.textContent = "Digitando...";
+        chatBox.appendChild(typingIndicator);
         scrollToBottom();
 
         setTimeout(() => {
-          chatBox.removeChild(typing);
+          chatBox.removeChild(typingIndicator);
           addMessage(text, true);
+          setBotStatus("online");
         }, delay);
       }
 
       function addMessage(message, isBot = true) {
-        const msg = document.createElement("p");
+        const msg = document.createElement("div");
         msg.classList.add(isBot ? "bot-message" : "user-message");
         msg.innerHTML = message;
+
+        if (isBot) {
+          const statusSpan = document.createElement("span");
+          statusSpan.classList.add("message-status", "read");
+          statusSpan.innerHTML = '<i class="fas fa-check-double"></i>';
+          msg.appendChild(statusSpan);
+        }
+
         chatBox.appendChild(msg);
         scrollToBottom();
       }
 
       function startChat() {
-        initScreen.style.display = "none";
+        initScreenChatbot.style.display = "none";
         chatBox.style.display = "flex";
+        document.querySelector(".chat-input-area").style.display = "flex";
 
         botTypingEffect(
-          "Olá! Seja bem-vindo ao nosso atendimento automático.",
-          1200,
+          "Olá! Seja bem-vindo à nossa Central de Ajuda para WhatsApp. Como posso te auxiliar hoje?",
+          1500,
         );
 
         setTimeout(() => {
-          botTypingEffect("Como podemos te ajudar hoje?", 1200);
-          setTimeout(() => {
-            showOptions();
-          }, 1000);
-        }, 2000);
+          showMainOptions();
+        }, 3000);
       }
 
-      function showOptions() {
+      function showMainOptions() {
+        const existingButtonsContainer = chatBox.querySelector(
+          ".chat-buttons-container",
+        );
+        if (existingButtonsContainer) {
+          existingButtonsContainer.remove();
+        }
+
+        const buttonsContainer = document.createElement("div");
+        buttonsContainer.classList.add("chat-buttons-container");
+
+        const btn1 = document.createElement("button");
+        btn1.textContent = "Problemas de Banimento";
+        btn1.className = "chat-button";
+        btn1.onclick = showBanOptions;
+
+        const btn2 = document.createElement("button");
+        btn2.textContent = "Dúvidas sobre Desbanimento";
+        btn2.className = "chat-button";
+        btn2.onclick = showDesbanOptions;
+
+        const btn3 = document.createElement("button");
+        btn3.textContent = "Falar com Humano";
+        btn3.className = "chat-button";
+        btn3.onclick = showHumanContact;
+
+        buttonsContainer.appendChild(btn1);
+        buttonsContainer.appendChild(btn2);
+        buttonsContainer.appendChild(btn3);
+
+        chatBox.appendChild(buttonsContainer);
+        scrollToBottom();
+      }
+
+      function showBanOptions() {
+        chatBox.innerHTML = "";
+        botTypingEffect(
+          "Para problemas de banimento, selecione a categoria que melhor se encaixa:",
+          1200,
+        );
         setTimeout(() => {
+          const buttonsContainer = document.createElement("div");
+          buttonsContainer.classList.add("chat-buttons-container");
+
           const btn1 = document.createElement("button");
           btn1.textContent = "Banimento via Fake Chat";
           btn1.className = "chat-button";
-          btn1.onclick = showFakeInstructions;
+          btn1.onclick = () => {
+            chatBox.innerHTML = "";
+            botTypingEffect(
+              "As instruções detalhadas para **banimento via Fake Chat** e a geração de textos específicos estão disponíveis na seção **'Gerador Texto Fake Chat'** do nosso site. Você pode ir lá para ver o tutorial completo e gerar seus textos!",
+              2500,
+            );
+            addBackButtonToChat(showBanOptions);
+          };
 
           const btn2 = document.createElement("button");
           btn2.textContent = "Banimento via Grupo API";
           btn2.className = "chat-button";
-          btn2.onclick = showApiInstructions;
+          btn2.onclick = () => {
+            chatBox.innerHTML = "";
+            botTypingEffect(
+              "As instruções detalhadas para **banimento via Grupo API** e a geração de textos específicos estão disponíveis na seção **'Gerador Texto Ban API'** do nosso site. Você pode ir lá para ver o tutorial completo e gerar seus textos!",
+              2500,
+            );
+            addBackButtonToChat(showBanOptions);
+          };
+
+          buttonsContainer.appendChild(btn1);
+          buttonsContainer.appendChild(btn2);
+          chatBox.appendChild(buttonsContainer);
+          addBackButtonToChat(showMainOptions);
+        }, 2000);
+      }
+
+      function showDesbanOptions() {
+        chatBox.innerHTML = "";
+        botTypingEffect(
+          "Entendido! Sobre o desbanimento, qual sua dúvida específica?",
+          1200,
+        );
+        setTimeout(() => {
+          const buttonsContainer = document.createElement("div");
+          buttonsContainer.classList.add("chat-buttons-container");
+
+          const btn1 = document.createElement("button");
+          btn1.textContent = "Como criar um método de desban";
+          btn1.className = "chat-button";
+          btn1.onclick = showDesbaniInstructions;
+
+          const btn2 = document.createElement("button");
+          btn2.textContent = "O que fazer após ser desbanido?";
+          btn2.className = "chat-button";
+          btn2.onclick = showPostDesbanInfo;
 
           const btn3 = document.createElement("button");
-          btn3.textContent = "Como Criar Método Desbani";
+          btn3.textContent = "Quanto tempo leva para desbanir?";
           btn3.className = "chat-button";
-          btn3.onclick = showDesbaniInstructions;
+          btn3.onclick = showDesbanTime;
 
-          const back = document.createElement("button");
-          back.innerHTML = "&#x21A9; Voltar";
-          back.className = "chat-button back-btn";
-          back.onclick = resetChat;
-
-          chatBox.appendChild(btn1);
-          chatBox.appendChild(btn2);
-          chatBox.appendChild(btn3);
-          chatBox.appendChild(back);
-          scrollToBottom();
-        }, 1000);
-      }
-
-      function showFakeInstructions() {
-        chatBox.innerHTML = "";
-        botTypingEffect(
-          "Para banir via Fake Chat, você precisa de 1 ou 2 números ou alguém para te ajudar a denunciar.",
-        );
-        setTimeout(() => {
-          addMessage(
-            'Exemplo de texto:<br><br>🧨🧨 Sinta a emoção, aposte na sorte e viva a experiência de ganhar alto nos cassinos!<br>"Entre no jogo, desafie a sorte e descubra a emoção de ganhar!"<br>ACESSE: <a href="https://www.bkbet01.com/?id=40729027" target="_blank">https://www.bkbet01.com/?id=40729027</a>',
-          );
-          botTypingEffect(
-            "Instale um WhatsApp imune (Android) ou Watusi (iOS com Scarlet). Ative o fake chat, envie a denúncia 10/30 vezes no chat e 20 vezes no perfil. O outro número também denuncia.",
-          );
-          setTimeout(() => {
-            addMessage(
-              "Se não cair, tente outro texto. Números virgens funcionam mais rápido.",
-            );
-            addBackButton();
-          }, 1500);
-        }, 1500);
-      }
-
-      function showApiInstructions() {
-        chatBox.innerHTML = "";
-        botTypingEffect(
-          "Para banir via API, crie um grupo novo no WhatsApp e adicione o número alvo na bio.",
-        );
-        setTimeout(() => {
-          addMessage(
-            `Exemplo de texto:<br><br>🎲 MAKE MONEY FROM SPORTS BETTING WITHOUT LEAVING HOME! 💸<br><a href="https://www.desafio777bet.com/#/?invite_code=60957272" target="_blank">https://www.desafio777bet.com/#/?invite_code=60957272</a>`,
-          );
-          botTypingEffect(
-            "Cole o texto no grupo, denuncie com 3+ números, passe ADM ao alvo e saia. Pode tentar sem adicionar o alvo também.",
-          );
-          setTimeout(() => {
-            addBackButton();
-          }, 1500);
-        }, 1500);
+          buttonsContainer.appendChild(btn1);
+          buttonsContainer.appendChild(btn2);
+          buttonsContainer.appendChild(btn3);
+          chatBox.appendChild(buttonsContainer);
+          addBackButtonToChat(showMainOptions);
+        }, 2000);
       }
 
       function showDesbaniInstructions() {
         chatBox.innerHTML = "";
         botTypingEffect(
-          "Para criar um método de desbanimento, use o seguinte exemplo:",
+          "Criar um método de desbanimento eficaz requer clareza, honestidade e um bom argumento para o suporte do WhatsApp. O objetivo é mostrar que o banimento foi um engano ou que você não teve intenção de violar as regras.",
         );
 
         setTimeout(() => {
-          addMessage(`<strong>Exemplo de Desbani:</strong><br><br>
-        MEU CHIP ESTÁ BLOQUEADO<br><br>
-        <em>Meu chip foi bloqueado e, por isso, fiquei sem tempo para entrar no WhatsApp. Quando tentei acessar hoje, estava mostrando abuso de termos, mesmo sem estar online. Eu voltei agora (data da solicitação) e gostaria de esclarecer.</em>`);
+          addMessage(`**Exemplo de Texto de Desbanimento (adapte com seus dados):**<br><br>
+        **Assunto:** MEU CHIP ESTÁ BLOQUEADO E FUI BANIDO INJUSTAMENTE<br><br>
+        **Texto:** <em>Olá, equipe do WhatsApp. Meu número [**Seu_Número_Aqui**] foi bloqueado indevidamente devido a um problema com meu chip, que ficou inativo por [**Período, ex: alguns dias ou 1 semana**]. Por isso, não pude acessar o WhatsApp. Quando consegui reativar o chip hoje, percebi que minha conta estava mostrando "abuso de termos", mesmo sem eu ter estado online. Eu voltei hoje, [**Data_Atual_DD/MM/AAAA**], e gostaria de esclarecer que não violei nenhuma política de uso de forma intencional. Peço a revisão do meu caso e o restabelecimento do meu acesso o mais breve possível, pois dependo do WhatsApp para [**mencione o uso, ex: trabalho, estudos, comunicação familiar**]. Agradeço a atenção.</em>`);
           botTypingEffect(
-            "Esse é um exemplo de como criar um texto de solicitação de desbanimento.",
+            "**Dica Final:** Seja sempre educado, conciso e direto ao ponto. A personalização com seus dados e a data da solicitação é crucial. Evite acusações e foque em resolver o problema. Envie essa mensagem para o suporte do WhatsApp por e-mail ou pelo aplicativo, se possível.",
           );
           setTimeout(() => {
-            addBackButton();
-          }, 1500);
+            addBackButtonToChat(showDesbanOptions);
+          }, 2000);
         }, 1500);
       }
 
-      function addBackButton() {
+      function showPostDesbanInfo() {
+        chatBox.innerHTML = "";
+        botTypingEffect(
+          "Parabéns pelo desbanimento! Agora, é crucial adotar algumas práticas para evitar futuros problemas e manter sua conta segura.",
+          1200,
+        );
+        setTimeout(() => {
+          addMessage(`**Após ser desbanido, siga estas dicas para evitar novos bans:**<br>
+        1. **Use o WhatsApp Oficial:** Evite aplicativos modificados (GBWhatsApp, WhatsApp Imune, etc.). Eles são a principal causa de bans.<br>
+        2. **Moderação no Envio:** Não envie mensagens em massa (spam) ou para muitos contatos desconhecidos em um curto período.<br>
+        3. **Cuidado com Grupos:** Seja cauteloso ao entrar em grupos desconhecidos, especialmente aqueles que prometem dinheiro fácil ou contêm conteúdo duvidoso. Evite ser adicionado a muitos grupos rapidamente.<br>
+        4. **Denúncias:** Não denuncie outros usuários excessivamente ou de forma injustificada. Isso pode voltar contra você.<br>
+        5. **Verificação em Duas Etapas:** Ative e mantenha sua verificação em duas etapas sempre ativa para maior segurança e para evitar clonagens.<br>
+        6. **Conteúdo:** Nunca compartilhe conteúdo ilegal, ofensivo, que promova ódio, violência, spam ou que viole os Termos de Serviço do WhatsApp. O sistema de IA do WhatsApp é bem rigoroso.`);
+          addBackButtonToChat(showDesbanOptions);
+        }, 2000);
+      }
+
+      function showDesbanTime() {
+        chatBox.innerHTML = "";
+        botTypingEffect(
+          "O tempo para desbanir um número do WhatsApp pode variar bastante, dependendo de diversos fatores.",
+          1200,
+        );
+        setTimeout(() => {
+          addMessage(`**Fatores que influenciam o tempo de desbanimento:**<br>
+        - **Gravidade da violação:** Banimentos por spam leve ou uso de apps modificados podem ser mais rápidos de resolver do que bans por conteúdo ilegal ou assédio.<br>
+        - **Histórico da conta:** Se é seu primeiro ban ou se você já foi banido e desbanido várias vezes. Contas com histórico de reincidência demoram mais ou podem ser banidas permanentemente.<br>
+        - **Qualidade da apelação:** Uma mensagem de apelo clara, educada e convincente pode agilizar o processo.<br>
+        - **Volume de solicitações:** Em períodos de alta demanda no suporte do WhatsApp, as respostas podem demorar mais.<br><br>
+        **Em média:** Pode levar de **24 horas a 7 dias** para casos menos graves. Em situações mais severas ou para banimentos permanentes, pode demorar semanas ou até mesmo não ser revertido. Se o desbanimento for temporário, o WhatsApp geralmente informa a duração. Continue enviando apelos educados a cada 24-48 horas, se ainda não houver resposta ou se o tempo informado tiver passado.`);
+          addBackButtonToChat(showDesbanOptions);
+        }, 2000);
+      }
+
+      function showHumanContact() {
+        chatBox.innerHTML = "";
+        botTypingEffect(
+          "Entendido! Para falar diretamente com um de nossos especialistas, clique no botão abaixo para ser direcionado ao nosso bot de suporte no Telegram. Estaremos prontos para ajudar!",
+          1800,
+        );
+        setTimeout(() => {
+          const telegramLink = document.createElement("a");
+          telegramLink.href = "https://t.me/OVERBANSUPORTE_BOT"; // Link para o Telegram Bot
+          telegramLink.target = "_blank";
+          telegramLink.rel = "noopener noreferrer"; // Boa prática de segurança
+          telegramLink.className = "chat-button";
+          telegramLink.textContent = "Falar com Atendente (Telegram)";
+          telegramLink.style.backgroundColor = "#0088cc"; /* Cor do Telegram */
+          telegramLink.style.color = "#fff";
+          telegramLink.style.margin = "15px auto";
+          telegramLink.style.display = "block";
+          telegramLink.style.textAlign = "center";
+
+          chatBox.appendChild(telegramLink);
+          addBackButtonToChat(showMainOptions);
+        }, 2500);
+      }
+
+      function addBackButtonToChat(callback = showMainOptions) {
+        let buttonsContainer = chatBox.querySelector(".chat-buttons-container");
+        if (!buttonsContainer) {
+          buttonsContainer = document.createElement("div");
+          buttonsContainer.classList.add("chat-buttons-container");
+          chatBox.appendChild(buttonsContainer);
+        }
+
+        const oldBackButton = buttonsContainer.querySelector(".back-btn");
+        if (oldBackButton) {
+          oldBackButton.remove();
+        }
+
         const back = document.createElement("button");
-        back.innerHTML = "&#x21A9; Voltar";
+        back.innerHTML = "↩ Voltar";
         back.className = "chat-button back-btn";
-        back.onclick = showOptions;
-        chatBox.appendChild(back);
+        back.onclick = () => {
+          chatBox.innerHTML = "";
+          callback();
+        };
+
+        buttonsContainer.appendChild(back);
         scrollToBottom();
       }
 
@@ -679,183 +1832,110 @@
         chatBox.innerHTML = "";
         botTypingEffect("Reiniciando atendimento...");
         setTimeout(() => {
-          showOptions();
-        }, 1000);
-      }
-    </script>
-  </body>
-</html>
-
-<!doctype html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Card Criador</title>
-    <style>
-      body {
-        font-family: "Segoe UI", sans-serif;
-        background-color: #111;
-        color: #fff;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
+          showMainOptions();
+        }, 1500);
       }
 
-      .card {
-        background-color: #222;
-        padding: 30px;
-        border-radius: 15px;
-        text-align: center;
-        width: 400px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-        cursor: pointer;
-        transition:
-          transform 0.3s ease,
-          box-shadow 0.3s ease;
-      }
-
-      .card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
-      }
-
-      .card h3 {
-        margin-bottom: 20px;
-        font-size: 24px;
-        color: #ffb400;
-        font-weight: bold;
-      }
-
-      .loading-bar-container {
-        display: none;
-        width: 100%;
-        height: 10px;
-        background-color: #333;
-        border-radius: 10px;
-        margin-top: 20px;
-      }
-
-      .loading-bar {
-        width: 0;
-        height: 100%;
-        background-color: #ffb400;
-        border-radius: 10px;
-        animation: loading 3s forwards;
-      }
-
-      @keyframes loading {
-        to {
-          width: 100%;
+      function handleUserInput(event) {
+        if (event.key === "Enter") {
+          sendUserMessage();
         }
       }
 
-      .social-links {
-        display: none;
-        margin-top: 20px;
+      function sendUserMessage() {
+        const message = userInput.value.trim();
+        if (message) {
+          addMessage(message, false);
+          userInput.value = "";
+
+          setTimeout(() => {
+            botTypingEffect(
+              "Obrigado pela sua mensagem! Para que eu possa te ajudar melhor, por favor, utilize as opções disponíveis.",
+              2000,
+            );
+            setTimeout(() => {
+              showMainOptions();
+            }, 1000);
+          }, 1000);
+        }
       }
 
-      .social-links a {
-        display: block;
-        background-color: #d32f2f;
-        color: #fff;
-        padding: 12px 15px;
-        text-decoration: none;
-        margin: 10px 0;
-        font-size: 18px;
-        border-radius: 8px;
-        font-weight: bold;
-        text-align: center;
-        transition: background-color 0.3s;
+      // Funções do FAQ
+      function toggleFaq(id) {
+        const item = document.getElementById(id).closest(".faq-item");
+        item.classList.toggle("active");
       }
 
-      .social-links a:hover {
-        background-color: #b71c1c;
+      // Função de contato
+      function sendContactForm(event) {
+        event.preventDefault(); // Impede o envio padrão do formulário
+
+        const name = encodeURIComponent(document.getElementById('contact-name').value);
+        const email = encodeURIComponent(document.getElementById('contact-email').value);
+        const subject = encodeURIComponent(document.getElementById('contact-subject').value);
+        const message = encodeURIComponent(document.getElementById('contact-message').value);
+
+        const recipientEmail = "overstore71@gmail.com";
+        const mailtoLink = `mailto:${recipientEmail}?subject=${subject}&body=Nome: ${name}%0D%0AEmail: ${email}%0D%0AMensagem: ${message}`;
+
+        window.location.href = mailtoLink;
+
+        // Opcional: Você pode limpar o formulário após o clique, mesmo que ele redirecione
+        document.getElementById('contact-name').value = '';
+        document.getElementById('contact-email').value = '';
+        document.getElementById('contact-subject').value = '';
+        document.getElementById('contact-message').value = '';
       }
 
-      .card-footer {
-        margin-top: 20px;
-        font-size: 14px;
-        color: #888;
+      // Função para controlar a exibição dos módulos
+      function showModule(moduleId) {
+        const modules = document.querySelectorAll(".module-section");
+        modules.forEach((module) => {
+          module.classList.remove("active");
+        });
+        document.getElementById(`${moduleId}-module`).classList.add("active");
+
+        // Atualiza o estado do botão ativo na navbar
+        const navButtons = document.querySelectorAll(".navbar button");
+        navButtons.forEach(btn => btn.classList.remove('active-nav-btn'));
+        const activeButton = document.getElementById(`btn-${moduleId}`);
+        if (activeButton) {
+          activeButton.classList.add('active-nav-btn');
+        }
+
+
+        // Lógica específica para cada módulo ao ser ativado
+        if (moduleId === "chatbot") {
+          initScreenChatbot.style.display = "flex";
+          chatBox.style.display = "none";
+          chatBox.innerHTML = "";
+          document.querySelector(".chat-input-area").style.display = "none";
+          setBotStatus("online");
+        }
+        // Reseta o estado dos geradores ao mudar de aba
+        if (moduleId !== 'generator') {
+            document.getElementById('desban-result').style.display = 'none';
+        }
+        if (moduleId !== 'generator-api') {
+            document.getElementById('api-result').style.display = 'none';
+        }
+        if (moduleId !== 'generator-fakechat') {
+            document.getElementById('fakechat-result').style.display = 'none';
+        }
       }
 
-      .card-footer a {
-        color: #ffb400;
-        text-decoration: none;
-        font-weight: bold;
-      }
+      // Função removida: scrollToModules() não é mais necessária já que o botão CTA vai direto para o Telegram.
 
-      .card-footer a:hover {
-        color: #ff9f00;
-      }
-
-      .access-button {
-        background-color: #ff6f61;
-        color: #fff;
-        padding: 12px 20px;
-        font-size: 18px;
-        font-weight: bold;
-        border-radius: 8px;
-        text-decoration: none;
-        transition: background-color 0.3s;
-      }
-
-      .access-button:hover {
-        background-color: #e55a4c;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="card" onclick="showLoading()">
-      <h3>CRIADOR DO SITE</h3>
-      <div class="loading-bar-container" id="loading-bar-container">
-        <div class="loading-bar" id="loading-bar"></div>
-      </div>
-      <div class="social-links" id="social-links">
-        <a href="https://www.youtube.com/@apelaWar_yt/videos" target="_blank"
-          >Acesse o YouTube: ApelaWar_yt</a
-        >
-        <a href="https://br.pinterest.com/APELAWAR71/" target="_blank"
-          >Acesse o Pinterest: ApelaWar71</a
-        >
-        <a href="https://t.me/ApelaWar71" target="_blank" class="access-button"
-          >ACESSE AQUI - Telegram</a
-        >
-      </div>
-      <div class="card-footer">
-        <p>
-          Criado por:
-          <a href="https://www.youtube.com/@apelaWar_yt" target="_blank"
-            >ApelaWar</a
-          >
-        </p>
-      </div>
-    </div>
-
-    <script>
-      function showLoading() {
-        const loadingBarContainer = document.getElementById(
-          "loading-bar-container",
-        );
-        const loadingBar = document.getElementById("loading-bar");
-        const socialLinks = document.getElementById("social-links");
-
-        loadingBarContainer.style.display = "block";
-
-        // Simula um carregamento de 3 segundos
-        setTimeout(() => {
-          loadingBar.style.width = "100%";
-        }, 100);
-
-        setTimeout(() => {
-          // Esconde a barra de carregamento e mostra as redes sociais
-          loadingBarContainer.style.display = "none";
-          socialLinks.style.display = "block";
-        }, 3000);
-      }
+      // Inicia com a hero section visível, e o módulo gerador de desbanimento ativo
+      document.addEventListener("DOMContentLoaded", () => {
+        // Por padrão, o site começa com a Hero Section.
+        // Se você quiser que ele já role para os módulos quando carregar, pode adicionar:
+        // document.getElementById('main-content').scrollIntoView();
+        // Mas a ideia é que o botão "Começar Agora" leve o usuário ao Telegram.
+        // O primeiro módulo (gerador) ainda será o ativo quando o usuário interagir com a navbar.
+        showModule("generator"); // Garante que um módulo esteja ativo após a Hero Section
+        document.getElementById('btn-generator').classList.add('active-nav-btn');
+      });
     </script>
   </body>
 </html>
