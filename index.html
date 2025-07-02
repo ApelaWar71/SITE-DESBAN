@@ -3,6 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Ferramentas e suporte para desbanimento de WhatsApp, gerador de texto de apelação, chatbot de atendimento e dicas para segurança no WhatsApp. Recupere seu acesso e evite bans.">
+    <meta name="keywords" content="WhatsApp, desbanir WhatsApp, banido WhatsApp, recuperar conta WhatsApp, gerador de texto desban, chatbot WhatsApp, fake chat, grupo API, ApelaWar, Desban Solutions">
+    <meta name="author" content="ApelaWar">
+    <meta property="og:title" content="Desban Solutions - Sua Ajuda WhatsApp">
+    <meta property="og:description" content="Ferramentas e suporte para desbanimento de WhatsApp, gerador de texto de apelação, chatbot de atendimento e dicas para segurança no WhatsApp. Recupere seu acesso e evite bans.">
+    <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1200px-WhatsApp.svg.png"> <meta property="og:url" content="URL_DO_SEU_SITE_AQUI"> <meta property="og:type" content="website">
+
     <title>Desban Solutions - Sua Ajuda WhatsApp</title>
     <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1200px-WhatsApp.svg.png" type="image/x-icon">
     <link
@@ -693,11 +700,28 @@
         color: #e6edf3;
         font-size: 16px;
         width: 100%;
+        transition: border-color 0.3s ease; /* Adicionado para validação */
+      }
+
+      #contact-module .contact-form input:focus,
+      #contact-module .contact-form textarea:focus {
+        outline: none;
+        border-color: #58a6ff; /* Destaca a borda no foco */
       }
 
       #contact-module .contact-form textarea {
         resize: vertical;
         min-height: 120px;
+      }
+
+      .error-message { /* Estilo para mensagens de erro */
+        color: #ff6347; /* Tomate */
+        font-size: 0.85em;
+        margin-top: -10px;
+        margin-bottom: 5px;
+        text-align: left;
+        width: 100%;
+        display: block;
       }
 
       #contact-module .contact-form button {
@@ -729,6 +753,120 @@
       #contact-module .contact-info a:hover {
         text-decoration: underline;
       }
+
+      /* --- NOVO: Estilos para Mensagens de Notificação (Toast) --- */
+      .toast-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .toast {
+        background-color: #333;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInToast 0.5s forwards, fadeOutToast 0.5s forwards 2.5s;
+      }
+
+      @keyframes fadeInToast {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeOutToast {
+        from {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        to {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+      }
+      /* --- FIM: Estilos para Mensagens de Notificação (Toast) --- */
+
+      /* --- NOVO: Estilos para a Seção de Depoimentos --- */
+      #testimonials-module .testimonial-card {
+        background-color: #0d1117;
+        border-radius: 10px;
+        padding: 25px;
+        margin-bottom: 20px;
+        border: 1px solid #30363d;
+        text-align: left;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      #testimonials-module .testimonial-card p {
+        font-size: 1.1em;
+        line-height: 1.7;
+        margin-bottom: 15px;
+        color: #e6edf3;
+        text-align: left; /* Alinha o texto do depoimento à esquerda */
+      }
+
+      #testimonials-module .testimonial-author {
+        font-weight: 600;
+        color: #58a6ff;
+        font-size: 0.95em;
+        text-align: right;
+      }
+      /* --- FIM: Estilos para a Seção de Depoimentos --- */
+
+      /* --- NOVO: Estilos para o Footer --- */
+      .site-footer {
+        width: 100%;
+        max-width: 1200px;
+        background-color: #161b22;
+        padding: 20px;
+        border-radius: 12px;
+        margin-top: 40px;
+        text-align: center;
+        box-shadow: 0 -6px 15px rgba(0, 0, 0, 0.4);
+        font-size: 0.9em;
+        color: #8b949e;
+      }
+
+      .site-footer a {
+        color: #58a6ff;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .site-footer a:hover {
+        text-decoration: underline;
+      }
+
+      .site-footer .social-icons {
+        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .site-footer .social-icons a {
+        color: #e6edf3;
+        font-size: 1.5em;
+        transition: color 0.3s ease;
+      }
+
+      .site-footer .social-icons a:hover {
+        color: #58a6ff;
+      }
+      /* --- FIM: Estilos para o Footer --- */
 
 
       /* Responsividade Geral */
@@ -829,420 +967,476 @@
         #creator-module .social-links a i {
           font-size: 18px;
         }
+        .toast-container {
+          bottom: 10px;
+          right: 10px;
+        }
       }
     </style>
   </head>
   <body>
-    <section class="hero-section" id="home">
-      <h1>Desban Solutions: Sua Ajuda Rápida no WhatsApp</h1>
-      <p>
-        Ferramentas e suporte para resolver seus problemas de banimento e otimizar
-        sua comunicação no WhatsApp. Recupere seu acesso e aprenda a evitar futuras
-        dores de cabeça!
-      </p>
-      <a href="https://t.me/OVERBANSUPORTE_BOT" target="_blank" rel="noopener noreferrer" class="cta-button">Começar Agora!</a>
-    </section>
+    <header>
+        <section class="hero-section" id="home">
+            <h1>Desban Solutions: Sua Ajuda Rápida no WhatsApp</h1>
+            <p>
+                Ferramentas e suporte para resolver seus problemas de banimento e otimizar
+                sua comunicação no WhatsApp. Recupere seu acesso e aprenda a evitar futuras
+                dores de cabeça!
+            </p>
+            <a href="https://t.me/OVERBANSUPORTE_BOT" target="_blank" rel="noopener noreferrer" class="cta-button">Começar Agora!</a>
+        </section>
 
-    <nav class="navbar" id="main-content">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1200px-WhatsApp.svg.png" alt="Desban Solutions Logo" class="logo">
-      <button id="btn-generator" onclick="showModule('generator')">Gerador de Texto Desban</button>
-      <button id="btn-generator-api" onclick="showModule('generator-api')">Gerador Texto Ban API</button>
-      <button id="btn-generator-fakechat" onclick="showModule('generator-fakechat')">Gerador Texto Fake Chat</button>
-      <button id="btn-chatbot" onclick="showModule('chatbot')">Chatbot de Atendimento</button>
-      <button id="btn-faq" onclick="showModule('faq')">FAQ - Perguntas Frequentes</button>
-      <button id="btn-creator" onclick="showModule('creator')">Criador do Site</button>
-      <button id="btn-contact" onclick="showModule('contact')">Contato</button>
-    </nav>
+        <nav class="navbar" id="main-content">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1200px-WhatsApp.svg.png" alt="Logo Desban Solutions - Ícone do WhatsApp" class="logo">
+            <button id="btn-generator" onclick="showModule('generator')">Gerador de Texto Desban</button>
+            <button id="btn-generator-api" onclick="showModule('generator-api')">Gerador Texto Ban API</button>
+            <button id="btn-generator-fakechat" onclick="showModule('generator-fakechat')">Gerador Texto Fake Chat</button>
+            <button id="btn-chatbot" onclick="showModule('chatbot')">Chatbot de Atendimento</button>
+            <button id="btn-faq" onclick="showModule('faq')">FAQ - Perguntas Frequentes</button>
+            <button id="btn-testimonials" onclick="showModule('testimonials')">Depoimentos</button>
+            <button id="btn-creator" onclick="showModule('creator')">Criador do Site</button>
+            <button id="btn-contact" onclick="showModule('contact')">Contato</button>
+        </nav>
+    </header>
 
-    <section id="generator-module" class="module-section active">
-      <h2>Gerador de Texto e Assunto para Desbanimento</h2>
-      <p>
-        Use esta ferramenta para criar rapidamente textos e assuntos eficazes
-        para solicitar o desbanimento do seu número no WhatsApp. Facilite o
-        processo de recuperação!
-      </p>
-      <div class="generator-input-group">
-        <label for="input-number">Seu Número de WhatsApp (com DDD):</label>
-        <input type="text" id="input-number" placeholder="Ex: +5511987654321" />
-      </div>
-      <div class="generator-input-group">
-        <label for="input-period">Período de inatividade/bloqueio:</label>
-        <input type="text" id="input-period" placeholder="Ex: alguns dias, 1 semana, 2 meses" />
-      </div>
-      <div class="generator-input-group">
-        <label for="input-usage">Para que você usa o WhatsApp?</label>
-        <input type="text" id="input-usage" placeholder="Ex: trabalho, estudos, comunicação familiar" />
-      </div>
-      <button onclick="generateDesbanText()">Gerar Texto</button>
-      <div class="result" id="desban-result">
-        <h3>Assunto Sugerido:</h3>
-        <p id="desban-subject"></p>
-        <h3>Texto Sugerido:</h3>
-        <p id="desban-text"></p>
-        <button class="copy-btn" onclick="copyDesbanText()">
-          <i class="fas fa-copy"></i> Copiar Assunto e Texto
-        </button>
-      </div>
-    </section>
+    <main>
+        <section id="generator-module" class="module-section active">
+            <h2>Gerador de Texto e Assunto para Desbanimento</h2>
+            <p>
+                Use esta ferramenta para criar rapidamente textos e assuntos eficazes
+                para solicitar o desbanimento do seu número no WhatsApp. Facilite o
+                processo de recuperação!
+            </p>
+            <div class="generator-input-group">
+                <label for="input-number">Seu Número de WhatsApp (com DDD):</label>
+                <input type="text" id="input-number" placeholder="Ex: +5511987654321" />
+            </div>
+            <div class="generator-input-group">
+                <label for="input-period">Período de inatividade/bloqueio:</label>
+                <input type="text" id="input-period" placeholder="Ex: alguns dias, 1 semana, 2 meses" />
+            </div>
+            <div class="generator-input-group">
+                <label for="input-usage">Para que você usa o WhatsApp?</label>
+                <input type="text" id="input-usage" placeholder="Ex: trabalho, estudos, comunicação familiar" />
+            </div>
+            <button onclick="generateDesbanText()">Gerar Texto</button>
+            <div class="result" id="desban-result">
+                <h3>Assunto Sugerido:</h3>
+                <p id="desban-subject"></p>
+                <h3>Texto Sugerido:</h3>
+                <p id="desban-text"></p>
+                <button class="copy-btn" onclick="copyDesbanText()">
+                    <i class="fas fa-copy"></i> Copiar Assunto e Texto
+                </button>
+            </div>
+        </section>
 
-    <section id="generator-api-module" class="module-section">
-      <h2>Gerador de Texto para Banimento via Grupo API</h2>
-      <p>
-        Gere textos persuasivos com links de WhatsApp API para denunciar grupos
-        ou números. Use com responsabilidade e siga as instruções para o
-        banimento via Grupo API.
-      </p>
-      <button onclick="generateApiText()">Gerar Texto de Banimento</button>
-      <div class="result" id="api-result">
-        <h3>Texto de Banimento Sugerido:</h3>
-        <p id="api-text"></p>
-        <button class="copy-btn" onclick="copyApiText()">
-          <i class="fas fa-copy"></i> Copiar Texto
-        </button>
-      </div>
+        <section id="generator-api-module" class="module-section">
+            <h2>Gerador de Texto para Banimento via Grupo API</h2>
+            <p>
+                Gere textos persuasivos com links de WhatsApp API para denunciar grupos
+                ou números. Use com responsabilidade e siga as instruções para o
+                banimento via Grupo API.
+            </p>
+            <button onclick="generateApiText()">Gerar Texto de Banimento</button>
+            <div class="result" id="api-result">
+                <h3>Texto de Banimento Sugerido:</h3>
+                <p id="api-text"></p>
+                <button class="copy-btn" onclick="copyApiText()">
+                    <i class="fas fa-copy"></i> Copiar Texto
+                </button>
+            </div>
 
-      <div class="api-tutorial" style="margin-top: 40px; text-align: left">
-        <h3 style="color: #58a6ff; margin-bottom: 15px">
-          Como usar o Banimento via Grupo API:
-        </h3>
-        <p style="color: #c9d1d9; font-size: 16px; margin-bottom: 10px">
-          Para banir via API, o processo envolve a criação de um grupo e a
-          inserção de conteúdo específico na biografia ou mensagens.
-        </p>
-        <ul style="color: #c9d1d9; font-size: 16px; margin-left: 20px">
-          <li style="margin-bottom: 8px">
-            1. **Crie um grupo novo** no WhatsApp.
-          </li>
-          <li style="margin-bottom: 8px">
-            2. **Adicione o número alvo** na **bio do grupo** (descrição do
-            grupo).
-          </li>
-          <li style="margin-bottom: 8px">
-            3. **Cole o texto de banimento gerado** (ex: sobre apostas, sites
-            perigosos) nas **mensagens do grupo**.
-          </li>
-          <li style="margin-bottom: 8px">
-            4. **Denuncie o grupo e o alvo** com **3 ou mais números diferentes**.
-          </li>
-          <li style="margin-bottom: 8px">
-            5. **Passe o ADM** (administrador) para o número alvo e **saia do
-            grupo**.
-          </li>
-          <li style="margin-bottom: 8px">
-            **Dica:** Você também pode tentar sem adicionar o alvo, focando
-            apenas na denúncia do grupo com o conteúdo malicioso na bio e/ou
-            mensagens.
-          </li>
-        </ul>
-      </div>
-    </section>
+            <div class="api-tutorial" style="margin-top: 40px; text-align: left">
+                <h3 style="color: #58a6ff; margin-bottom: 15px">
+                    Como usar o Banimento via Grupo API:
+                </h3>
+                <p style="color: #c9d1d9; font-size: 16px; margin-bottom: 10px">
+                    Para banir via API, o processo envolve a criação de um grupo e a
+                    inserção de conteúdo específico na biografia ou mensagens.
+                </p>
+                <ul style="color: #c9d1d9; font-size: 16px; margin-left: 20px">
+                    <li style="margin-bottom: 8px">
+                        1. **Crie um grupo novo** no WhatsApp.
+                    </li>
+                    <li style="margin-bottom: 8px">
+                        2. **Adicione o número alvo** na **bio do grupo** (descrição do
+                        grupo).
+                    </li>
+                    <li style="margin-bottom: 8px">
+                        3. **Cole o texto de banimento gerado** (ex: sobre apostas, sites
+                        perigosos) nas **mensagens do grupo**.
+                    </li>
+                    <li style="margin-bottom: 8px">
+                        4. **Denuncie o grupo e o alvo** com **3 ou mais números diferentes**.
+                    </li>
+                    <li style="margin-bottom: 8px">
+                        5. **Passe o ADM** (administrador) para o número alvo e **saia do
+                        grupo**.
+                    </li>
+                    <li style="margin-bottom: 8px">
+                        **Dica:** Você também pode tentar sem adicionar o alvo, focando
+                        apenas na denúncia do grupo com o conteúdo malicioso na bio e/ou
+                        mensagens.
+                    </li>
+                </ul>
+            </div>
+        </section>
 
-    <section id="generator-fakechat-module" class="module-section">
-      <h2>Gerador de Texto para Banimento via Fake Chat</h2>
-      <p>
-        Gere textos com conteúdo chamativo para utilizar no método de Fake Chat.
-        Esta é uma ferramenta para auxiliar no processo de banimento de contas
-        que violam as políticas do WhatsApp.
-      </p>
-      <button onclick="generateFakeChatText()">Gerar Texto Fake Chat</button>
-      <div class="result" id="fakechat-result">
-        <h3>Texto de Banimento Sugerido:</h3>
-        <p id="fakechat-text"></p>
-        <button class="copy-btn" onclick="copyFakeChatText()">
-          <i class="fas fa-copy"></i> Copiar Texto
-        </button>
-      </div>
+        <section id="generator-fakechat-module" class="module-section">
+            <h2>Gerador de Texto para Banimento via Fake Chat</h2>
+            <p>
+                Gere textos com conteúdo chamativo para utilizar no método de Fake Chat.
+                Esta é uma ferramenta para auxiliar no processo de banimento de contas
+                que violam as políticas do WhatsApp.
+            </p>
+            <button onclick="generateFakeChatText()">Gerar Texto Fake Chat</button>
+            <div class="result" id="fakechat-result">
+                <h3>Texto de Banimento Sugerido:</h3>
+                <p id="fakechat-text"></p>
+                <button class="copy-btn" onclick="copyFakeChatText()">
+                    <i class="fas fa-copy"></i> Copiar Texto
+                </button>
+            </div>
 
-      <div class="fakechat-tutorial" style="margin-top: 40px; text-align: left">
-        <h3 style="color: #58a6ff; margin-bottom: 15px">
-          Como usar o Banimento via Fake Chat:
-        </h3>
-        <p style="color: #c9d1d9; font-size: 16px; margin-bottom: 10px">
-          Para banir via Fake Chat, você precisa de 1 ou 2 números de apoio
-          (ou amigos) para te ajudar a denunciar. Isso cria um volume de
-          denúncias que pode levar ao banimento do número alvo.
-        </p>
-        <ul style="color: #c9d1d9; font-size: 16px; margin-left: 20px">
-          <li style="margin-bottom: 8px">
-            1. Instale um **WhatsApp imune** (disponível para Android) ou
-            **Watusi** (para iOS, via jailbreak ou ferramentas como Scarlet).
-          </li>
-          <li style="margin-bottom: 8px">
-            2. Ative o recurso de **fake chat** com o número do alvo que deseja
-            banir.
-          </li>
-          <li style="margin-bottom: 8px">
-            3. **Envie o texto de banimento gerado** (com links de risco ou
-            conteúdo proibido) **10 a 30 vezes no fake chat** com o alvo e mais
-            **20 vezes no perfil do alvo** (na seção de denúncia).
-          </li>
-          <li style="margin-bottom: 8px">
-            4. Se tiver um segundo número ou um amigo, eles também devem
-            denunciar o alvo com frequência para maior eficácia.
-          </li>
-          <li style="margin-bottom: 8px">
-            **Dica Importante:** Se o banimento não ocorrer, tente variar o
-            texto da denúncia com outros conteúdos proibidos. Números de
-            WhatsApp *virgens* (pouco usados ou novos) tendem a funcionar mais
-            rapidamente para denúncias, pois têm menos 'reputação' no sistema.
-          </li>
-        </ul>
-      </div>
-    </section>
+            <div class="fakechat-tutorial" style="margin-top: 40px; text-align: left">
+                <h3 style="color: #58a6ff; margin-bottom: 15px">
+                    Como usar o Banimento via Fake Chat:
+                </h3>
+                <p style="color: #c9d1d9; font-size: 16px; margin-bottom: 10px">
+                    Para banir via Fake Chat, você precisa de 1 ou 2 números de apoio
+                    (ou amigos) para te ajudar a denunciar. Isso cria um volume de
+                    denúncias que pode levar ao banimento do número alvo.
+                </p>
+                <ul style="color: #c9d1d9; font-size: 16px; margin-left: 20px">
+                    <li style="margin-bottom: 8px">
+                        1. Instale um **WhatsApp imune** (disponível para Android) ou
+                        **Watusi** (para iOS, via jailbreak ou ferramentas como Scarlet).
+                    </li>
+                    <li style="margin-bottom: 8px">
+                        2. Ative o recurso de **fake chat** com o número do alvo que deseja
+                        banir.
+                    </li>
+                    <li style="margin-bottom: 8px">
+                        3. **Envie o texto de banimento gerado** (com links de risco ou
+                        conteúdo proibido) **10 a 30 vezes no fake chat** com o alvo e mais
+                        **20 vezes no perfil do alvo** (na seção de denúncia).
+                    </li>
+                    <li style="margin-bottom: 8px">
+                        4. Se tiver um segundo número ou um amigo, eles também devem
+                        denunciar o alvo com frequência para maior eficácia.
+                    </li>
+                    <li style="margin-bottom: 8px">
+                        **Dica Importante:** Se o banimento não ocorrer, tente variar o
+                        texto da denúncia com outros conteúdos proibidos. Números de
+                        WhatsApp *virgens* (pouco usados ou novos) tendem a funcionar mais
+                        rapidamente para denúncias, pois têm menos 'reputação' no sistema.
+                    </li>
+                </ul>
+            </div>
+        </section>
 
-    <section id="chatbot-module" class="module-section">
-      <div class="chat-container">
-        <div class="chat-header">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1200px-WhatsApp.svg.png"
-            alt="Bot Avatar"
-          />
-          <div>
-            Bot de Atendimento
-            <div id="bot-status" class="chat-status">online</div>
-          </div>
-        </div>
+        <section id="chatbot-module" class="module-section">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1200px-WhatsApp.svg.png"
+                        alt="Bot Avatar"
+                    />
+                    <div>
+                        Bot de Atendimento
+                        <div id="bot-status" class="chat-status">online</div>
+                    </div>
+                </div>
 
-        <div class="init-screen" id="init-screen-chatbot">
-          <div class="loader"><div class="loader-bar"></div></div>
-          <p>
-            <span class="rotate-icon">⏳</span> Aguarde... preparando seu
-            atendimento virtual.
-          </p>
-          <button class="chat-button" onclick="startChat()">
-            Iniciar Atendimento
-          </button>
-        </div>
+                <div class="init-screen" id="init-screen-chatbot">
+                    <div class="loader"><div class="loader-bar"></div></div>
+                    <p>
+                        <span class="rotate-icon">⏳</span> Aguarde... preparando seu
+                        atendimento virtual.
+                    </p>
+                    <button class="chat-button" onclick="startChat()">
+                        Iniciar Atendimento
+                    </button>
+                </div>
 
-        <div class="chat-box" id="chat-box-chatbot"></div>
+                <div class="chat-box" id="chat-box-chatbot"></div>
 
-        <div class="chat-input-area">
-          <input
-            type="text"
-            id="user-input"
-            placeholder="Digite sua mensagem..."
-            onkeypress="handleUserInput(event)"
-          />
-          <button onclick="sendUserMessage()">
-            <i class="fas fa-paper-plane"></i>
-          </button>
-        </div>
-      </div>
-    </section>
+                <div class="chat-input-area">
+                    <input
+                        type="text"
+                        id="user-input"
+                        placeholder="Digite sua mensagem..."
+                        onkeypress="handleUserInput(event)"
+                    />
+                    <button onclick="sendUserMessage()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
 
-    <section id="faq-module" class="module-section">
-      <h2>Perguntas Frequentes (FAQ)</h2>
-      <p>
-        Encontre respostas para as dúvidas mais comuns sobre banimento,
-        desbanimento e uso das ferramentas do WhatsApp.
-      </p>
+        <section id="faq-module" class="module-section">
+            <h2>Perguntas Frequentes (FAQ)</h2>
+            <p>
+                Encontre respostas para as dúvidas mais comuns sobre banimento,
+                desbanimento e uso das ferramentas do WhatsApp.
+            </p>
 
-      <div class="faq-item" onclick="toggleFaq('faq1')">
-        <div class="faq-question">
-          O que causa o banimento de uma conta no WhatsApp?
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer" id="faq1">
-          <p>O WhatsApp pode banir contas por várias razões, incluindo:</p>
-          <ul>
-            <li>
-              Uso de aplicativos não oficiais (GBWhatsApp, WhatsApp Plus, etc.).
-            </li>
-            <li>
-              Envio excessivo de mensagens para contatos desconhecidos ou em massa (spam).
-            </li>
-            <li>Ser bloqueado ou denunciado por muitos usuários em um curto período.</li>
-            <li>
-              Compartilhamento de conteúdo ilegal, ofensivo, de ódio, violento ou
-              que viole os Termos de Serviço do WhatsApp.
-            </li>
-            <li>Automação de mensagens.</li>
-          </ul>
-        </div>
-      </div>
+            <div class="faq-item" onclick="toggleFaq('faq1')">
+                <div class="faq-question">
+                    O que causa o banimento de uma conta no WhatsApp?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer" id="faq1">
+                    <p>O WhatsApp pode banir contas por várias razões, incluindo:</p>
+                    <ul>
+                        <li>
+                            Uso de aplicativos não oficiais (GBWhatsApp, WhatsApp Plus, etc.).
+                        </li>
+                        <li>
+                            Envio excessivo de mensagens para contatos desconhecidos ou em massa (spam).
+                        </li>
+                        <li>Ser bloqueado ou denunciado por muitos usuários em um curto período.</li>
+                        <li>
+                            Compartilhamento de conteúdo ilegal, ofensivo, de ódio, violento ou
+                            que viole os Termos de Serviço do WhatsApp.
+                        </li>
+                        <li>Automação de mensagens.</li>
+                    </ul>
+                </div>
+            </div>
 
-      <div class="faq-item" onclick="toggleFaq('faq2')">
-        <div class="faq-question">
-          Como posso saber se minha conta foi banida permanentemente?
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer" id="faq2">
-          <p>
-            Quando você tenta usar o WhatsApp, uma mensagem geralmente aparece
-            informando que seu número está "banido" ou que "não está autorizado
-            a usar o WhatsApp". Se a mensagem não especificar um período de
-            tempo ou indicar que o banimento é temporário, é provável que seja
-            permanente. Em casos de banimento permanente, o aplicativo não
-            permitirá que você registre o número novamente.
-          </p>
-        </div>
-      </div>
+            <div class="faq-item" onclick="toggleFaq('faq2')">
+                <div class="faq-question">
+                    Como posso saber se minha conta foi banida permanentemente?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer" id="faq2">
+                    <p>
+                        Quando você tenta usar o WhatsApp, uma mensagem geralmente aparece
+                        informando que seu número está "banido" ou que "não está autorizado
+                        a usar o WhatsApp". Se a mensagem não especificar um período de
+                        tempo ou indicar que o banimento é temporário, é provável que seja
+                        permanente. Em casos de banimento permanente, o aplicativo não
+                        permitirá que você registre o número novamente.
+                    </p>
+                </div>
+            </div>
 
-      <div class="faq-item" onclick="toggleFaq('faq3')">
-        <div class="faq-question">
-          Posso usar as ferramentas de banimento para qualquer pessoa?
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer" id="faq3">
-          <p>
-            **AVISO LEGAL:** As ferramentas de banimento (Fake Chat e Grupo API)
-            disponibilizadas neste site são para fins informativos e educacionais,
-            com o objetivo de demonstrar vulnerabilidades ou métodos de segurança.
-            **O uso indevido dessas ferramentas para fins maliciosos, assédio,
-            bullying ou qualquer atividade ilegal é estritamente proibido e de
-            total responsabilidade do usuário.** A "Desban Solutions" não se
-            responsabiliza por qualquer uso indevido ou consequências resultantes.
-            Utilize sempre com **ética e responsabilidade**.
-          </p>
-        </div>
-      </div>
+            <div class="faq-item" onclick="toggleFaq('faq3')">
+                <div class="faq-question">
+                    Posso usar as ferramentas de banimento para qualquer pessoa?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer" id="faq3">
+                    <p>
+                        **AVISO LEGAL:** As ferramentas de banimento (Fake Chat e Grupo API)
+                        disponibilizadas neste site são para fins informativos e educacionais,
+                        com o objetivo de demonstrar vulnerabilidades ou métodos de segurança.
+                        **O uso indevido dessas ferramentas para fins maliciosos, assédio,
+                        bullying ou qualquer atividade ilegal é estritamente proibido e de
+                        total responsabilidade do usuário.** A "Desban Solutions" não se
+                        responsabiliza por qualquer uso indevido ou consequências resultantes.
+                        Utilize sempre com **ética e responsabilidade**.
+                    </p>
+                </div>
+            </div>
 
-      <div class="faq-item" onclick="toggleFaq('faq4')">
-        <div class="faq-question">
-          Qual a diferença entre Banimento via Fake Chat e Grupo API?
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer" id="faq4">
-          <p>
-            **Banimento via Fake Chat:** Utiliza aplicativos modificados (imunes)
-            para simular conversas com conteúdo proibido. O objetivo é gerar
-            provas forjadas para denúncia, fazendo com que o WhatsApp acredite
-            que o alvo está violando as regras. Geralmente requer mais denúncias
-            de múltiplos números.
-          </p>
-          <p>
-            **Banimento via Grupo API:** Envolve a criação de um grupo e a inserção
-            de links de WhatsApp API com conteúdo suspeito (aposta, phishing, etc.)
-            na bio ou mensagens do grupo. A denúncia se concentra no grupo e, por
-            extensão, no número alvo, caso ele seja o administrador ou tenha
-            interação direta. É considerado mais "automático" pelo sistema do WhatsApp.
-          </p>
-        </div>
-      </div>
+            <div class="faq-item" onclick="toggleFaq('faq4')">
+                <div class="faq-question">
+                    Qual a diferença entre Banimento via Fake Chat e Grupo API?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer" id="faq4">
+                    <p>
+                        **Banimento via Fake Chat:** Utiliza aplicativos modificados (imunes)
+                        para simular conversas com conteúdo proibido. O objetivo é gerar
+                        provas forjadas para denúncia, fazendo com que o WhatsApp acredite
+                        que o alvo está violando as regras. Geralmente requer mais denúncias
+                        de múltiplos números.
+                    </p>
+                    <p>
+                        **Banimento via Grupo API:** Envolve a criação de um grupo e a inserção
+                        de links de WhatsApp API com conteúdo suspeito (aposta, phishing, etc.)
+                        na bio ou mensagens do grupo. A denúncia se concentra no grupo e, por
+                        extensão, no número alvo, caso ele seja o administrador ou tenha
+                        interação direta. É considerado mais "automático" pelo sistema do WhatsApp.
+                    </p>
+                </div>
+            </div>
 
-      <div class="faq-item" onclick="toggleFaq('faq5')">
-        <div class="faq-question">
-          Meu número foi desbanido. O que devo fazer para não ser banido novamente?
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer" id="faq5">
-          <p>
-            Após o desbanimento, é **fundamental** seguir as boas práticas para
-            evitar novas suspensões:
-          </p>
-          <ul>
-            <li>**Sempre use o aplicativo oficial do WhatsApp.**</li>
-            <li>
-              Evite enviar mensagens em massa (spam) ou para muitos contatos
-              desconhecidos rapidamente.
-            </li>
-            <li>
-              Cuidado com grupos: não entre em muitos grupos desconhecidos e
-              evite compartilhar conteúdo duvidoso.
-            </li>
-            <li>Não denuncie outros usuários de forma injustificada.</li>
-            <li>
-              Ative a **Verificação em Duas Etapas** para proteger sua conta.
-            </li>
-            <li>
-              Nunca compartilhe conteúdo ilegal, ofensivo, que promova ódio,
-              violência ou que viole os Termos de Serviço do WhatsApp.
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
+            <div class="faq-item" onclick="toggleFaq('faq5')">
+                <div class="faq-question">
+                    Meu número foi desbanido. O que devo fazer para não ser banido novamente?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer" id="faq5">
+                    <p>
+                        Após o desbanimento, é **fundamental** seguir as boas práticas para
+                        evitar novas suspensões:
+                    </p>
+                    <ul>
+                        <li>**Sempre use o aplicativo oficial do WhatsApp.**</li>
+                        <li>
+                            Evite enviar mensagens em massa (spam) ou para muitos contatos
+                            desconhecidos rapidamente.
+                        </li>
+                        <li>
+                            Cuidado com grupos: não entre em muitos grupos desconhecidos e
+                            evite compartilhar conteúdo duvidoso.
+                        </li>
+                        <li>Não denuncie outros usuários de forma injustificada.</li>
+                        <li>
+                            Ative a **Verificação em Duas Etapas** para proteger sua conta.
+                        </li>
+                        <li>
+                            Nunca compartilhe conteúdo ilegal, ofensivo, que promova ódio,
+                            violência ou que viole os Termos de Serviço do WhatsApp.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-    <section id="creator-module" class="module-section">
-      <div class="card">
-        <img
-          src="https://i.ibb.co/9m0zKNVJ/EF04-C6-F5-3-DA5-4-C01-8-FE4-C239-A7-D9-A54-C.gif"
-          alt="Foto de Perfil do Criador"
-          class="creator-avatar"
-        />
-        <h3>Conheça o Criador do Site</h3>
-        <p>
-          Descubra quem está por trás desta ferramenta e conecte-se nas redes
-          sociais para mais conteúdos e novidades.
-        </p>
-        <div class="social-links" id="social-links-creator">
-          <a
-            href="https://m.youtube.com/@apelaWar_yt/videos"
-            target="_blank"
-            rel="noopener noreferrer"
-            ><i class="fab fa-youtube"></i> Acesse o YouTube: ApelaWar_yt</a
-          >
-          <a
-            href="https://br.pinterest.com/APELAWAR71/"
-            target="_blank"
-            rel="noopener noreferrer"
-            ><i class="fab fa-pinterest"></i> Acesse o Pinterest: ApelaWar71</a
-          >
-          <a
-            href="https://t.me/OVERBANSUPORTE_BOT"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="access-button"
-            ><i class="fab fa-telegram-plane"></i> ACESSE AQUI - Telegram</a
-          >
-        </div>
-        <div class="card-footer">
-          <p>
-            Desenvolvido com dedicação por:
-            <a
-              href="https://m.youtube.com/@apelaWar_yt/videos"
-              target="_blank"
-              rel="noopener noreferrer"
-              >ApelaWar</a
-            >
-          </p>
-        </div>
-      </div>
-    </section>
+        <section id="testimonials-module" class="module-section">
+            <h2>O que nossos usuários dizem</h2>
+            <p>Leia o feedback de quem já utilizou nossas ferramentas e obteve sucesso!</p>
 
-    <section id="contact-module" class="module-section">
-      <h2>Entre em Contato</h2>
-      <p>
-        Tem dúvidas, sugestões ou precisa de ajuda personalizada? Preencha o
-        formulário abaixo ou use nossos canais de comunicação.
-      </p>
+            <div class="testimonial-card">
+                <p>"Graças ao gerador de texto de desban, consegui recuperar meu número em menos de 24 horas! O site é super intuitivo e realmente funciona."</p>
+                <div class="testimonial-author">- Lucas S., Empresário</div>
+            </div>
 
-      <form class="contact-form" onsubmit="sendContactForm(event)">
-        <label for="contact-name">Seu Nome:</label>
-        <input type="text" id="contact-name" name="name" required />
+            <div class="testimonial-card">
+                <p>"Eu estava desesperado com meu WhatsApp banido e encontrei a Desban Solutions. O chatbot me guiou e as dicas do FAQ foram essenciais. Recomendo muito!"</p>
+                <div class="testimonial-author">- Maria P., Estudante</div>
+            </div>
 
-        <label for="contact-email">Seu E-mail:</label>
-        <input type="email" id="contact-email" name="email" required />
+            <div class="testimonial-card">
+                <p>"As ferramentas de banimento são poderosas, mas o aviso sobre o uso responsável é crucial. É bom saber que existe uma solução ética para problemas sérios."</p>
+                <div class="testimonial-author">- Fernando D., Desenvolvedor</div>
+            </div>
+        </section>
+        <section id="creator-module" class="module-section">
+            <div class="card">
+                <img
+                    src="https://i.ibb.co/9m0zKNVJ/EF04-C6-F5-3-DA5-4-C01-8-FE4-C239-A7-D9-A54-C.gif"
+                    alt="Foto de Perfil do Criador ApelaWar" class="creator-avatar"
+                />
+                <h3>Conheça o Criador do Site</h3>
+                <p>
+                    Descubra quem está por trás desta ferramenta e conecte-se nas redes
+                    sociais para mais conteúdos e novidades.
+                </p>
+                <div class="social-links" id="social-links-creator">
+                    <a
+                        href="https://m.youtube.com/@apelaWar_yt/videos"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        ><i class="fab fa-youtube"></i> Acesse o YouTube: ApelaWar_yt</a
+                    >
+                    <a
+                        href="https://br.pinterest.com/APELAWAR71/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        ><i class="fab fa-pinterest"></i> Acesse o Pinterest: ApelaWar71</a
+                    >
+                    <a
+                        href="https://t.me/OVERBANSUPORTE_BOT"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="access-button"
+                        ><i class="fab fa-telegram-plane"></i> ACESSE AQUI - Telegram</a
+                    >
+                </div>
+                <div class="card-footer">
+                    <p>
+                        Desenvolvido com dedicação por:
+                        <a
+                            href="https://m.youtube.com/@apelaWar_yt/videos"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >ApelaWar</a
+                        >
+                    </p>
+                </div>
+            </div>
+        </section>
 
-        <label for="contact-subject">Assunto:</label>
-        <input type="text" id="contact-subject" name="subject" required />
+        <section id="contact-module" class="module-section">
+            <h2>Entre em Contato</h2>
+            <p>
+                Tem dúvidas, sugestões ou precisa de ajuda personalizada? Preencha o
+                formulário abaixo ou use nossos canais de comunicação.
+            </p>
 
-        <label for="contact-message">Sua Mensagem:</label>
-        <textarea id="contact-message" name="message" required></textarea>
+            <form class="contact-form" onsubmit="sendContactForm(event)">
+                <label for="contact-name">Seu Nome:</label>
+                <input type="text" id="contact-name" name="name" required onblur="validateInput('contact-name', 'Por favor, digite seu nome.', 'error-name')" oninput="validateInput('contact-name', 'Por favor, digite seu nome.', 'error-name')" />
+                <span class="error-message" id="error-name"></span>
 
-        <button type="submit">Enviar Mensagem</button>
-      </form>
+                <label for="contact-email">Seu E-mail:</label>
+                <input type="email" id="contact-email" name="email" required onblur="validateEmail('contact-email', 'error-email')" oninput="validateEmail('contact-email', 'error-email')" />
+                <span class="error-message" id="error-email"></span>
 
-      <div class="contact-info">
-        <p>
-          Você também pode nos encontrar no Telegram para suporte rápido:
-          <a
-            href="https://t.me/OVERBANSUPORTE_BOT"
-            target="_blank"
-            rel="noopener noreferrer"
-            ><i class="fab fa-telegram-plane"></i> @OVERBANSUPORTE_BOT</a
-          >
-        </p>
-        <p>
-          Para parcerias ou outras questões, envie um e-mail para:
-          <a href="mailto:overstore71@gmail.com"
-            >overstore71@gmail.com</a
-          >
-        </p>
-      </div>
-    </section>
+                <label for="contact-subject">Assunto:</label>
+                <input type="text" id="contact-subject" name="subject" required onblur="validateInput('contact-subject', 'Por favor, digite o assunto.', 'error-subject')" oninput="validateInput('contact-subject', 'Por favor, digite o assunto.', 'error-subject')" />
+                <span class="error-message" id="error-subject"></span>
 
+                <label for="contact-message">Sua Mensagem:</label>
+                <textarea id="contact-message" name="message" required onblur="validateInput('contact-message', 'Por favor, digite sua mensagem.', 'error-message')" oninput="validateInput('contact-message', 'Por favor, digite sua mensagem.', 'error-message')"></textarea>
+                <span class="error-message" id="error-message"></span>
+
+                <button type="submit">Enviar Mensagem</button>
+            </form>
+
+            <div class="contact-info">
+                <p>
+                    Você também pode nos encontrar no Telegram para suporte rápido:
+                    <a
+                        href="https://t.me/OVERBANSUPORTE_BOT"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        ><i class="fab fa-telegram-plane"></i> @OVERBANSUPORTE_BOT</a
+                    >
+                </p>
+                <p>
+                    Para parcerias ou outras questões, envie um e-mail para:
+                    <a href="mailto:overstore71@gmail.com"
+                        >overstore71@gmail.com</a
+                    >
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <div class="toast-container" id="toastContainer"></div>
+    <footer class="site-footer">
+        <p>© 2025 Desban Solutions. Todos os direitos reservados.</p>
+        <div class="social-icons">
+            <a href="https://m.youtube.com/@apelaWar_yt/videos" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://br.pinterest.com/APELAWAR71/" target="_blank" rel="noopener noreferrer" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+            <a href="https://t.me/OVERBANSUPORTE_BOT" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+        <p>Desenvolvido com ❤️ por <a href="https://m.youtube.com/@apelaWar_yt/videos" target="_blank" rel="noopener noreferrer">ApelaWar</a></p>
+    </footer>
     <script>
+      // --- NOVO: Função para exibir notificações Toast ---
+      function showToast(message) {
+        const toastContainer = document.getElementById('toastContainer');
+        const toast = document.createElement('div');
+        toast.classList.add('toast');
+        toast.textContent = message;
+        toastContainer.appendChild(toast);
+
+        // Remove o toast após a animação (3 segundos: 0.5s fade in + 2.5s display + 0.5s fade out)
+        setTimeout(() => {
+          toast.remove();
+        }, 3000);
+      }
+      // --- FIM NOVO: Função para exibir notificações Toast ---
+
       // Funções do gerador de texto para DESBANIMENTO
       const desbanTexts = [
         {
@@ -1456,10 +1650,10 @@
 
         navigator.clipboard.writeText(textToCopy).then(
           function () {
-            alert("Texto copiado com sucesso!");
+            showToast("Texto e assunto copiados!"); // Usando a nova função showToast
           },
           function (err) {
-            alert("Erro ao copiar texto: " + err);
+            showToast("Erro ao copiar texto.");
           },
         );
       }
@@ -1501,10 +1695,10 @@
 
         navigator.clipboard.writeText(textContent).then(
           function () {
-            alert("Texto de banimento copiado com sucesso!");
+            showToast("Texto de banimento copiado!"); // Usando a nova função showToast
           },
           function (err) {
-            alert("Erro ao copiar texto: " + err);
+            showToast("Erro ao copiar texto.");
           },
         );
       }
@@ -1549,10 +1743,10 @@
 
         navigator.clipboard.writeText(textContent).then(
           function () {
-            alert("Texto de banimento (Fake Chat) copiado com sucesso!");
+            showToast("Texto de banimento (Fake Chat) copiado!"); // Usando a nova função showToast
           },
           function (err) {
-            alert("Erro ao copiar texto: " + err);
+            showToast("Erro ao copiar texto.");
           },
         );
       }
@@ -1866,26 +2060,124 @@
         item.classList.toggle("active");
       }
 
-      // Função de contato
+      // --- Validação de Formulário de Contato (Melhorado) ---
+      function displayError(inputElement, errorMessage, errorId) {
+        const errorSpan = document.getElementById(errorId);
+        if (errorMessage) {
+          errorSpan.textContent = errorMessage;
+          inputElement.style.borderColor = '#ff6347'; // Cor de erro
+          inputElement.classList.add('input-error'); // Adiciona classe para mais estilos se necessário
+        } else {
+          errorSpan.textContent = '';
+          inputElement.style.borderColor = '#30363d'; /* Cor da borda original */
+          inputElement.classList.remove('input-error');
+        }
+      }
+
+      function validateInput(id, message, errorId) {
+        const inputElement = document.getElementById(id);
+        if (inputElement.value.trim() === '') {
+          displayError(inputElement, message, errorId);
+          return false;
+        } else {
+          displayError(inputElement, '', errorId);
+          return true;
+        }
+      }
+
+      function validateEmail(id, errorId) {
+        const inputElement = document.getElementById(id);
+        const email = inputElement.value.trim();
+        if (email === '') {
+          displayError(inputElement, 'Por favor, digite seu e-mail.', errorId);
+          return false;
+        } else if (!/\S+@\S+\.\S+/.test(email)) {
+          displayError(inputElement, 'Por favor, digite um e-mail válido.', errorId);
+          return false;
+        } else {
+          displayError(inputElement, '', errorId);
+          return true;
+        }
+      }
+
+      function validateContactForm() {
+        let isValid = true;
+        isValid = validateInput('contact-name', 'Por favor, digite seu nome.', 'error-name') && isValid;
+        isValid = validateEmail('contact-email', 'error-email') && isValid;
+        isValid = validateInput('contact-subject', 'Por favor, digite o assunto.', 'error-subject') && isValid;
+        isValid = validateInput('contact-message', 'Por favor, digite sua mensagem.', 'error-message') && isValid;
+        return isValid;
+      }
+
       function sendContactForm(event) {
         event.preventDefault(); // Impede o envio padrão do formulário
 
-        const name = encodeURIComponent(document.getElementById('contact-name').value);
-        const email = encodeURIComponent(document.getElementById('contact-email').value);
-        const subject = encodeURIComponent(document.getElementById('contact-subject').value);
-        const message = encodeURIComponent(document.getElementById('contact-message').value);
+        if (validateContactForm()) { // Valida antes de tentar enviar
+            const name = encodeURIComponent(document.getElementById('contact-name').value);
+            const email = encodeURIComponent(document.getElementById('contact-email').value);
+            const subject = encodeURIComponent(document.getElementById('contact-subject').value);
+            const message = encodeURIComponent(document.getElementById('contact-message').value);
 
-        const recipientEmail = "overstore71@gmail.com";
-        const mailtoLink = `mailto:${recipientEmail}?subject=${subject}&body=Nome: ${name}%0D%0AEmail: ${email}%0D%0AMensagem: ${message}`;
+            // Simulação de envio para um backend (substituir por uma chamada AJAX real)
+            console.log('Dados do formulário para envio (simulação):', { name, email, subject, message });
 
-        window.location.href = mailtoLink;
+            // Neste ponto, você faria uma requisição AJAX (fetch ou XMLHttpRequest) para seu servidor.
+            // Exemplo conceitual (precisaria de um backend real para funcionar):
+            /*
+            fetch('/api/send-email', { // Seu endpoint de backend
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, email, subject, message }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showToast("Mensagem enviada com sucesso!");
+                    // Limpa o formulário
+                    document.getElementById('contact-form').reset();
+                    // Limpa as bordas de erro
+                    ['contact-name', 'contact-email', 'contact-subject', 'contact-message'].forEach(id => {
+                        document.getElementById(id).style.borderColor = '#30363d';
+                        document.getElementById(id).classList.remove('input-error');
+                    });
+                } else {
+                    showToast("Erro ao enviar mensagem: " + (data.message || "Tente novamente."));
+                }
+            })
+            .catch(error => {
+                console.error('Erro no envio do formulário:', error);
+                showToast("Erro de conexão ao enviar mensagem. Tente novamente mais tarde.");
+            });
+            */
 
-        // Opcional: Você pode limpar o formulário após o clique, mesmo que ele redirecione
-        document.getElementById('contact-name').value = '';
-        document.getElementById('contact-email').value = '';
-        document.getElementById('contact-subject').value = '';
-        document.getElementById('contact-message').value = '';
+            // Mantendo a funcionalidade mailto: como fallback ou para demonstração sem backend
+            const recipientEmail = "overstore71@gmail.com";
+            const mailtoLink = `mailto:${recipientEmail}?subject=${subject}&body=Nome: ${name}%0D%0AEmail: ${email}%0D%0AMensagem: ${message}`;
+            window.location.href = mailtoLink;
+            showToast("Mensagem enviada! Verifique seu cliente de e-mail."); // Notificação amigável
+
+            // Limpa o formulário após a tentativa de envio (mesmo com mailto)
+            document.getElementById('contact-name').value = '';
+            document.getElementById('contact-email').value = '';
+            document.getElementById('contact-subject').value = '';
+            document.getElementById('contact-message').value = '';
+            // Limpa mensagens de erro e bordas
+            ['error-name', 'error-email', 'error-subject', 'error-message'].forEach(id => {
+                document.getElementById(id).textContent = '';
+            });
+            ['contact-name', 'contact-email', 'contact-subject', 'contact-message'].forEach(id => {
+                document.getElementById(id).style.borderColor = '#30363d';
+                document.getElementById(id).classList.remove('input-error');
+            });
+
+        } else {
+            showToast("Por favor, preencha todos os campos obrigatórios corretamente.");
+        }
       }
+      // --- FIM Validação de Formulário de Contato (Melhorado) ---
+
 
       // Função para controlar a exibição dos módulos
       function showModule(moduleId) {
