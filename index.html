@@ -239,6 +239,66 @@
         transform: translateY(-2px);
       }
 
+      /* Card de Informações de Compra */
+      .purchase-info-card {
+            background-color: var(--card-bg);
+            border: 2px solid var(--anime-magenta);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 25px;
+            text-align: left;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+            display: none; /* Oculto por padrão */
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSlideUp 0.6s forwards ease-out;
+        }
+
+        .purchase-info-card.show {
+            display: block;
+        }
+
+        .purchase-info-card h3 {
+            font-family: "Orbitron", sans-serif;
+            color: var(--anime-magenta);
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
+        }
+
+        .purchase-info-card p {
+            font-family: "Montserrat", sans-serif;
+            color: var(--text-light);
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .purchase-info-card .btn-access-bot {
+            background-color: var(--anime-green);
+            color: var(--bg-dark);
+            padding: 14px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            display: block;
+            margin-top: 20px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .purchase-info-card .btn-access-bot:hover {
+            background-color: #218838;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
+        }
+
+
       /* Hero Section */
       .hero-section {
         text-align: center;
@@ -500,7 +560,8 @@
       /* Gerador de Texto (Desban, API e Fake Chat) Específico */
       #generator-module .result,
       #generator-api-module .result,
-      #generator-fakechat-module .result {
+      #generator-fakechat-module .result,
+      #tips-module .result { /* Adicionado para o novo módulo de dicas */
         margin-top: 30px;
         background-color: var(--bg-dark);
         padding: 25px;
@@ -515,7 +576,8 @@
 
       #generator-module .result.show,
       #generator-api-module .result.show,
-      #generator-fakechat-module .result.show {
+      #generator-fakechat-module .result.show,
+      #tips-module .result.show { /* Adicionado para o novo módulo de dicas */
         display: block;
         opacity: 0;
         transform: translateY(20px);
@@ -531,7 +593,8 @@
 
       #generator-module .result h3,
       #generator-api-module .result h3,
-      #generator-fakechat-module .result h3 {
+      #generator-fakechat-module .result h3,
+      #tips-module .result h3 { /* Adicionado para o novo módulo de dicas */
         font-family: "Oswald", sans-serif;
         color: var(--anime-cyan);
         margin-bottom: 10px;
@@ -541,7 +604,8 @@
 
       #generator-module .result p,
       #generator-api-module .result p,
-      #generator-fakechat-module .result p {
+      #generator-fakechat-module .result p,
+      #tips-module .result p { /* Adicionado para o novo módulo de dicas */
         font-family: "Montserrat", sans-serif;
         margin-bottom: 15px;
         font-size: 16px;
@@ -552,7 +616,8 @@
 
       #generator-module .copy-btn,
       #generator-api-module .copy-btn,
-      #generator-fakechat-module .copy-btn {
+      #generator-fakechat-module .copy-btn,
+      #tips-module .copy-btn { /* Adicionado para o novo módulo de dicas */
         font-family: "Oswald", sans-serif;
         background-color: var(--anime-green);
         color: white;
@@ -567,13 +632,15 @@
 
       #generator-module .copy-btn i,
       #generator-api-module .copy-btn i,
-      #generator-fakechat-module .copy-btn i {
+      #generator-fakechat-module .copy-btn i,
+      #tips-module .copy-btn i { /* Adicionado para o novo módulo de dicas */
         margin-right: 8px;
       }
 
       #generator-module .copy-btn:hover,
       #generator-api-module .copy-btn:hover,
-      #generator-fakechat-module .copy-btn:hover {
+      #generator-fakechat-module .copy-btn:hover,
+      #tips-module .copy-btn:hover { /* Adicionado para o novo módulo de dicas */
         background-color: #218838;
         transform: translateY(-2px);
       }
@@ -1258,22 +1325,26 @@
         }
         #generator-module .result,
         #generator-api-module .result,
-        #generator-fakechat-module .result {
+        #generator-fakechat-module .result,
+        #tips-module .result { /* Adicionado para o novo módulo de dicas */
           padding: 15px;
         }
         #generator-module .result h3,
         #generator-api-module .result h3,
-        #generator-fakechat-module .result h3 {
+        #generator-fakechat-module .result h3,
+        #tips-module .result h3 { /* Adicionado para o novo módulo de dicas */
           font-size: 20px;
         }
         #generator-module .result p,
         #generator-api-module .result p,
-        #generator-fakechat-module .result p {
+        #generator-fakechat-module .result p,
+        #tips-module .result p { /* Adicionado para o novo módulo de dicas */
           font-size: 15px;
         }
         #generator-module .copy-btn,
         #generator-api-module .copy-btn,
-        #generator-fakechat-module .copy-btn {
+        #generator-fakechat-module .copy-btn,
+        #tips-module .copy-btn { /* Adicionado para o novo módulo de dicas */
           padding: 10px 18px;
           font-size: 14px;
         }
@@ -1331,6 +1402,12 @@
           font-size: 0.95em;
           padding: 10px 15px;
         }
+        .purchase-info-card {
+            padding: 20px;
+        }
+        .purchase-info-card h3 {
+            font-size: 1.5em;
+        }
       }
     </style>
   </head>
@@ -1354,7 +1431,7 @@
         <p id="login-error" class="error-message" style="display: none;"></p>
 
         <div class="login-options">
-          <a href="https://t.me/OverStorePremium_Bot" target="_blank" rel="noopener noreferrer" class="btn-buy-access">
+          <a href="#" class="btn-buy-access" onclick="showPurchaseInfo(event)">
             <i class="fas fa-shopping-cart"></i> Não tenho acesso! (Comprar)
           </a>
           <a href="https://t.me/OVERBANSUPORTE_BOT" target="_blank" rel="noopener noreferrer" class="btn-support" onclick="showSupportInstructions(event)">
@@ -1363,6 +1440,23 @@
           <p id="support-instructions" class="info-text" style="display: none; color: var(--anime-cyan); margin-top: 15px; font-size: 0.9em; font-weight: 600;">
             Ao clicar no botão de suporte, você será direcionado ao nosso bot no Telegram. Por favor, envie seu **login e senha** + **comprovante de compra** para um atendimento rápido.
           </p>
+        </div>
+
+        <div id="purchase-info-card" class="purchase-info-card">
+            <h3>Como Obter Seu Acesso Premium</h3>
+            <p>
+                Para adquirir seu acesso às ferramentas da **Desban Solutions**,
+                você pode comprar as credenciais diretamente através do nosso bot oficial no Telegram.
+            </p>
+            <p>
+                As credenciais de **usuário** e **senha** serão fornecidas imediatamente após a confirmação da compra.
+            </p>
+            <p>
+                Clique no botão abaixo para ser redirecionado ao bot de compras:
+            </p>
+            <a href="https://t.me/OverStorePremium_Bot" target="_blank" rel="noopener noreferrer" class="btn-access-bot">
+                <i class="fas fa-robot"></i> Acessar Bot de Compras
+            </a>
         </div>
       </div>
     </div>
@@ -1384,7 +1478,7 @@
                 <button id="btn-generator" onclick="showModule('generator')">Gerador de Texto Desban</button>
                 <button id="btn-generator-api" onclick="showModule('generator-api')">Gerador Texto Ban API</button>
                 <button id="btn-generator-fakechat" onclick="showModule('generator-fakechat')">Gerador Texto Fake Chat</button>
-                <button id="btn-chatbot" onclick="showModule('chatbot')">Chatbot de Atendimento</button>
+                <button id="btn-tips" onclick="showModule('tips')">Dicas de Segurança</button> <button id="btn-chatbot" onclick="showModule('chatbot')">Chatbot de Atendimento</button>
                 <button id="btn-faq" onclick="showModule('faq')">FAQ - Perguntas Frequentes</button>
                 <button id="btn-testimonials" onclick="showModule('testimonials')">Depoimentos</button>
                 <button id="btn-creator" onclick="showModule('creator')">Criador do Site</button>
@@ -1529,6 +1623,29 @@
                 </div>
             </section>
 
+            <section id="tips-module" class="module-section">
+                <h2>Dicas de Navegação Segura</h2>
+                <p>Aprenda a proteger sua conta e evitar os perigos do ciberespaço do WhatsApp.</p>
+
+                <div class="generator-input-group">
+                    <label for="tip-type-select">Qual tipo de sabedoria você busca?</label>
+                    <select id="tip-type-select">
+                        <option value="general">Dicas Gerais de Proteção</option>
+                        <option value="privacy">Dicas de Privacidade Avançada</option>
+                        <option value="scams">Dicas para Evitar Golpes</option>
+                        <option value="features">Dicas de Recursos Essenciais</option>
+                    </select>
+                </div>
+                <button onclick="generateSecurityTip()">Gerar Dica</button>
+
+                <div class="result" id="tip-result">
+                    <h3>Sua Dica de Sabedoria:</h3>
+                    <p id="generated-tip-text"></p>
+                    <button class="copy-btn" onclick="copySecurityTip()">
+                        <i class="fas fa-copy"></i> Copiar Dica
+                    </button>
+                </div>
+            </section>
             <section id="chatbot-module" class="module-section">
                 <div class="chat-container">
                     <div class="chat-header">
@@ -1877,6 +1994,8 @@
         const errorMessage = document.getElementById("login-error");
         const loginOverlay = document.getElementById("login-overlay");
         const siteContent = document.getElementById("site-content");
+        const purchaseInfoCard = document.getElementById("purchase-info-card");
+
 
         const correctUsername = "@ApelaWar71"; // Seu nome de usuário
         const correctPassword = "apelinhaWar71"; // Sua senha
@@ -1901,6 +2020,7 @@
         } else {
           errorMessage.textContent = "Usuário ou senha incorretos. Tente novamente.";
           errorMessage.style.display = "block";
+          purchaseInfoCard.classList.remove('show'); // Esconde o card de compra se houver erro de login
           playSound(audioError); // Som de erro no login
         }
       }
@@ -1908,12 +2028,32 @@
       function showSupportInstructions(event) {
         event.preventDefault(); // Impede que o link de suporte abra imediatamente
         const instructions = document.getElementById("support-instructions");
+        const purchaseInfoCard = document.getElementById("purchase-info-card");
         instructions.style.display = "block";
+        purchaseInfoCard.classList.remove('show'); // Esconde o card de compra
         playSound(audioClick); // Som ao clicar no botão de suporte
         // Após mostrar a mensagem, redireciona após um pequeno atraso
         setTimeout(() => {
           window.open("https://t.me/OVERBANSUPORTE_BOT", "_blank");
         }, 2000); // 2 segundos de atraso para o usuário ler
+      }
+
+      // Função para exibir/ocultar o card de informações de compra
+      function showPurchaseInfo(event) {
+        event.preventDefault();
+        const purchaseInfoCard = document.getElementById("purchase-info-card");
+        const supportInstructions = document.getElementById("support-instructions");
+        const errorMessage = document.getElementById("login-error");
+
+
+        if (purchaseInfoCard.classList.contains('show')) {
+            purchaseInfoCard.classList.remove('show');
+        } else {
+            purchaseInfoCard.classList.add('show');
+            supportInstructions.style.display = "none"; // Esconde as instruções de suporte
+            errorMessage.style.display = "none"; // Esconde a mensagem de erro de login
+            playSound(audioClick); // Som ao abrir o card
+        }
       }
       // --- FIM Lógica de Login ---
 
@@ -2110,6 +2250,69 @@
         );
       }
 
+      // NOVO: Funções para o módulo de Dicas de Segurança
+      const securityTips = {
+        general: [
+            "Sempre utilize a versão oficial do WhatsApp. Aplicativos modificados (como GBWhatsApp, WhatsApp Plus) são portais para banimentos e podem comprometer sua segurança, pois não são auditados pelo WhatsApp.",
+            "Evite o envio excessivo de mensagens para contatos desconhecidos, especialmente em massa. Isso é considerado spam e pode levar à sua expulsão do sistema. A comunicação fluida é a chave, não o bombardeio.",
+            "Não entre ou permaneça em grupos que promovem atividades ilegais, conteúdo de ódio, fake news ou spam. Ser parte de uma guilda sombria pode manchar sua reputação digital e atrair a ira dos Guardiões.",
+            "Desconfie de links suspeitos ou ofertas 'boas demais para ser verdade'. Eles são armadilhas digitais. Sempre verifique o remetente e o domínio antes de clicar em qualquer portal desconhecido. A cautela é sua melhor armadura.",
+            "Seja um cidadão digital exemplar. Não denuncie outros usuários sem motivo real e evite comportamentos que violem os Termos de Serviço do WhatsApp. Manter a harmonia no ciberespaço é responsabilidade de todos.",
+            "Monitore suas permissões. Revise as permissões concedidas ao WhatsApp em seu dispositivo para garantir que o aplicativo não esteja acessando mais dados do que o necessário. O controle está em suas mãos."
+        ],
+        privacy: [
+            "Configure sua privacidade para 'Meus contatos' na foto de perfil, status e 'visto por último'. Assim, apenas quem você conhece pode ver suas informações, protegendo-o de olhares curiosos de estranhos.",
+            "Ative a verificação em duas etapas (Configurações > Conta > Verificação em duas etapas). Isso adiciona uma camada extra de proteção com um PIN, dificultando o acesso de hackers à sua conta, mesmo que descubram seu código de verificação inicial.",
+            "Gerencie quem pode adicionar você a grupos (Configurações > Privacidade > Grupos). Escolha 'Meus contatos' ou 'Meus contatos, exceto...' para evitar ser adicionado a grupos indesejados e potencialmente maliciosos.",
+            "Use o recurso de mensagens temporárias em conversas que contenham informações sensíveis. Isso garante que as mensagens desapareçam automaticamente após um período, mantendo a privacidade da sua comunicação.",
+            "Desative as confirmações de leitura ('tiques azuis') se você prefere ler mensagens sem que o remetente saiba imediatamente. Lembre-se que isso também desativa as confirmações para você.",
+            "Cuidado com os dados que você compartilha em seu status. Informações pessoais demais podem ser usadas por cibercriminosos. Mantenha seu status como um reflexo de sua persona digital pública, não de sua vida privada."
+        ],
+        scams: [
+            "Atenção a golpes de 'falso suporte' ou 'falsa promoção'. O WhatsApp nunca solicitará seus dados pessoais ou código de verificação por mensagem. Desconfie de qualquer pedido urgente de dinheiro ou dados.",
+            "Verifique sempre o remetente de mensagens de Pix ou transferências. Golpes do 'Pix premiado' ou ' Pix errado' são comuns. Nunca clique em links ou QR Codes que prometem dinheiro fácil em troca de informações bancárias.",
+            "Desconfie de ofertas de emprego milagrosas ou investimentos com retornos irreais. Muitos golpes se disfarçam de oportunidades financeiras. Pesquise a empresa e a oferta antes de qualquer comprometimento.",
+            "Cuidado com golpes de clonagem de WhatsApp. Se um amigo pedir dinheiro ou informações de forma incomum, ligue para ele para confirmar. Criminosos podem estar se passando por seus contatos.",
+            "Denuncie imediatamente qualquer mensagem ou contato que pareça suspeito. Sua denúncia ajuda a proteger a comunidade. O WhatsApp age contra spammers e golpistas com base em relatórios dos usuários.",
+            "Nunca compartilhe seu código de verificação do WhatsApp (aquele de 6 dígitos) com NINGUÉM. Ele é a chave para sua conta. Se alguém pedir, é uma tentativa de golpe para tomar sua conta."
+        ],
+        features: [
+            "Faça backup de suas conversas regularmente (Configurações > Conversas > Backup de conversas). Isso garante que seus registros sejam salvos na nuvem (Google Drive ou iCloud) e possam ser restaurados em caso de perda ou troca de aparelho.",
+            "Utilize as chamadas de voz e vídeo do WhatsApp para se conectar com amigos e familiares em qualquer lugar do mundo, sem custos adicionais, apenas usando sua conexão de internet. É uma ferramenta poderosa de comunicação.",
+            "Explore o recurso de 'mensagens favoritas' ou 'marcar como não lida' para organizar suas conversas. Marque mensagens importantes para acesso rápido ou lembre-se de responder a contatos específicos.",
+            "Experimente o WhatsApp Web ou Desktop para acessar suas conversas no computador. Isso oferece maior comodidade e agilidade para digitar, sendo ideal para quem trabalha ou estuda online.",
+            "Configure as notificações de forma personalizada para diferentes contatos ou grupos (clicando no nome do contato/grupo > Notificações personalizadas). Tenha controle sobre o que te alerta e o que não.",
+            "Use a função de 'Fixar conversas' (toque e segure na conversa) para manter seus chats mais importantes sempre no topo da lista, facilitando o acesso e a organização diária."
+        ]
+      };
+
+      function generateSecurityTip() {
+        playSound(audioClick);
+        const tipType = document.getElementById("tip-type-select").value;
+        const tipsArray = securityTips[tipType];
+        const randomIndex = Math.floor(Math.random() * tipsArray.length);
+        const selectedTip = tipsArray[randomIndex];
+
+        document.getElementById("generated-tip-text").innerHTML = selectedTip; // Usar innerHTML para tags HTML no texto
+        const resultElement = document.getElementById("tip-result");
+        resultElement.style.display = "block";
+        setTimeout(() => resultElement.classList.add('show'), 10);
+      }
+
+      function copySecurityTip() {
+        const textContent = document.getElementById("generated-tip-text").innerText; // innerText para copiar apenas o texto visível
+
+        navigator.clipboard.writeText(textContent).then(
+            function () {
+                playSound(audioCopy);
+                showToast("Dica de segurança copiada!");
+            },
+            function (err) {
+                showToast("Erro ao copiar a dica.");
+            },
+        );
+      }
+
       // Funções do chatbot
       const chatBox = document.getElementById("chat-box-chatbot");
       const initScreenChatbot = document.getElementById("init-screen-chatbot");
@@ -2218,14 +2421,21 @@
         btn2.className = "chat-button";
         btn2.onclick = showDesbanOptions;
 
+        // NOVO: Adicionado opção de Dicas de Segurança no chatbot
         const btn3 = document.createElement("button");
-        btn3.textContent = "Conectar com Mestre (Humano)"; /* Nome mais temático */
+        btn3.textContent = "Dicas de Segurança";
         btn3.className = "chat-button";
-        btn3.onclick = showHumanContact;
+        btn3.onclick = showSecurityTipsChatbot;
+
+        const btn4 = document.createElement("button");
+        btn4.textContent = "Conectar com Mestre (Humano)"; /* Nome mais temático */
+        btn4.className = "chat-button";
+        btn4.onclick = showHumanContact;
 
         buttonsContainer.appendChild(btn1);
         buttonsContainer.appendChild(btn2);
-        buttonsContainer.appendChild(btn3);
+        buttonsContainer.appendChild(btn3); // Adicionado o novo botão
+        buttonsContainer.appendChild(btn4);
 
         chatBox.appendChild(buttonsContainer);
         scrollToBottom();
@@ -2365,6 +2575,64 @@
           addBackButtonToChat(showDesbanOptions);
         }, 2000);
       }
+
+      // NOVO: Função para exibir opções de dicas de segurança no chatbot
+      function showSecurityTipsChatbot() {
+        playSound(audioClick);
+        chatBox.innerHTML = "";
+        botTypingEffect(
+          "Ah, a busca por sabedoria é sempre nobre! Qual aspecto da segurança você deseja explorar hoje?",
+          1200,
+        );
+        setTimeout(() => {
+          const buttonsContainer = document.createElement("div");
+          buttonsContainer.classList.add("chat-buttons-container");
+
+          const btn1 = document.createElement("button");
+          btn1.textContent = "Dicas Gerais de Proteção";
+          btn1.className = "chat-button";
+          btn1.onclick = () => {
+              const tip = securityTips.general[Math.floor(Math.random() * securityTips.general.length)];
+              botTypingEffect(tip, 2000);
+              addBackButtonToChat(showSecurityTipsChatbot);
+          };
+
+          const btn2 = document.createElement("button");
+          btn2.textContent = "Dicas de Privacidade Avançada";
+          btn2.className = "chat-button";
+          btn2.onclick = () => {
+              const tip = securityTips.privacy[Math.floor(Math.random() * securityTips.privacy.length)];
+              botTypingEffect(tip, 2000);
+              addBackButtonToChat(showSecurityTipsChatbot);
+          };
+
+          const btn3 = document.createElement("button");
+          btn3.textContent = "Dicas para Evitar Golpes";
+          btn3.className = "chat-button";
+          btn3.onclick = () => {
+              const tip = securityTips.scams[Math.floor(Math.random() * securityTips.scams.length)];
+              botTypingEffect(tip, 2000);
+              addBackButtonToChat(showSecurityTipsChatbot);
+          };
+
+          const btn4 = document.createElement("button");
+          btn4.textContent = "Dicas de Recursos Essenciais";
+          btn4.className = "chat-button";
+          btn4.onclick = () => {
+              const tip = securityTips.features[Math.floor(Math.random() * securityTips.features.length)];
+              botTypingEffect(tip, 2000);
+              addBackButtonToChat(showSecurityTipsChatbot);
+          };
+
+          buttonsContainer.appendChild(btn1);
+          buttonsContainer.appendChild(btn2);
+          buttonsContainer.appendChild(btn3);
+          buttonsContainer.appendChild(btn4);
+          chatBox.appendChild(buttonsContainer);
+          addBackButtonToChat(showMainOptions);
+        }, 2000);
+      }
+
 
       function showHumanContact() {
         playSound(audioClick);
@@ -2583,6 +2851,11 @@
         if (moduleId !== 'generator-fakechat') {
             document.getElementById('fakechat-result').style.display = 'none';
             document.getElementById('fakechat-result').classList.remove('show');
+        }
+        // NOVO: Esconde o resultado do módulo de dicas
+        if (moduleId !== 'tips') {
+            document.getElementById('tip-result').style.display = 'none';
+            document.getElementById('tip-result').classList.remove('show');
         }
       }
 
